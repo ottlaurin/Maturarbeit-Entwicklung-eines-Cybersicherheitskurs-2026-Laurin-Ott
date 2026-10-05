@@ -1,5 +1,0 @@
-[0] Config.pm:329> INFO - This is Biber 2.22
-[0] Config.pm:332> INFO - Logfile is 'Präsentation_Maturarbeit.blg'
-[138] biber-MSWIN64:342> INFO - === 
-[821] Utils.pm:480> ERROR - Cannot find 'Präsentation_Maturarbeit.bcf'!
-[821] Biber.pm:137> INFO - ERRORS: 1

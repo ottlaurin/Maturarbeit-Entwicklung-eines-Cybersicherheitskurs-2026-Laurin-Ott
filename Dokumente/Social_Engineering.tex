@@ -1,0 +1,102 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage[colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black]{hyperref}
+\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage[toc, acronym, nonumberlist, style=long]{glossaries}
+\makeglossaries
+\sloppy
+
+\begin{filecontents*}{\jobname.bib}
+@misc{bsi2023socialengineering,
+  author = {{Bundesamt für Sicherheit in der Informationstechnik}},
+  title = {Social Engineering: Die Schwachstelle Mensch im Fokus},
+  year = {2023}
+}
+\end{filecontents*}
+
+\addbibresource{\jobname.bib}
+
+\newglossaryentry{socialengineering}{
+  name=Social Engineering,
+  description={Die gezielte Manipulation von Personen durch psychologische Tricks, um an vertrauliche Informationen zu gelangen oder Handlungen zu erzwingen.}
+}
+
+\newglossaryentry{pretexting}{
+  name=Pretexting,
+  description={Eine Social-Engineering-Methode, bei der eine erfundene Geschichte oder Identität genutzt wird, um das Vertrauen des Opfers zu gewinnen.}
+}
+
+\begin{document}
+
+% --- TITELBLATT ---
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    
+    {\Huge \textbf{Skript: Social Engineering} \par}
+    \vspace{1.5cm}
+    {\Large \textbf{Kantonsschule im Lee} \par}
+    \vspace{2cm}
+    
+    \rule{\linewidth}{0.5mm}
+    \vspace{2cm}
+    
+    {\large \textbf{Thema:} Social Engineering, Angriffsvektoren \& Abwehrmassnahmen \par}
+    \vspace{0.5cm}
+    {\large \textbf{Fach:} Informatik \par}
+    \vspace{0.5cm}
+    {\large \textbf{Autor:} Laurin Ott \par}
+    
+    \vfill
+    
+    {\large \textbf{Datum:} \today \par}
+\end{titlepage}
+
+% --- INHALTSVERZEICHNIS ---
+\newpage
+\tableofcontents
+\newpage
+
+\section{Einleitung}
+In der IT-Sicherheit gilt der Mensch oft als das schwächste Glied in der Sicherheitskette. Während technische Schutzmassnahmen wie Firewalls und Verschlüsselung hochentwickelt sind, nutzen Angreifer beim \gls{socialengineering} gezielt menschliche Eigenschaften wie Hilfsbereitschaft, Respekt vor Autoritäten oder Naivität aus, um Sicherheitsbarrieren zu umgehen \cite{bsi2023socialengineering}.
+
+\section{Grundlegende Angriffsformen}
+\gls{socialengineering} umfasst eine Vielzahl von psychologischen Angriffsmethoden, die im Folgenden näher betrachtet werden:
+\begin{itemize}
+    \item \textbf{Pretexting:} Der Angreifer erfindet eine glaubwürdige Geschichte oder Identität (zum Beispiel als IT-Support oder Vorgesetzter), um an vertrauliche Daten zu gelangen.
+    \item \textbf{Tailgating/Piggybacking:} Ein unbefugter Dritter verschafft sich physischen Zugang zu einem gesicherten Gebäude, indem er einer berechtigten Person durch eine Tür folgt.
+    \item \textbf{Baiting:} Dem Opfer wird ein physisches Medium (wie ein präparierter USB-Stick) oder ein digitaler Köder ausgelegt, dessen Neugier geweckt werden soll.
+    \item \textbf{Quid Pro Quo:} Dem Opfer wird eine Gegenleistung (zum Beispiel technische Hilfe) für die Preisgabe von Zugangsdaten oder Informationen versprochen.
+\end{itemize}
+                                                   
+\section{Psychologische Mechanismen}
+Angreifer setzen gezielt psychologische Hebel ein, um rationale Entscheidungsprozesse zu umgehen:
+\begin{itemize}
+    \item \textbf{Autorität:} Das Ausnutzen von Respekt vor Vorgesetzten oder offiziellen Stellen.
+    \item \textbf{Dringlichkeit:} Erzeugen von Zeitdruck, damit das Opfer nicht lange nachdenkt.
+    \item \textbf{Hilfsbereitschaft:} Appell an das Gute im Menschen, einem Kollegen oder einer hilfssuchenden Person schnell zu assistieren.
+\end{itemize}
+
+\section{Best Practices und Prävention}
+Um sich und Unternehmen vor \gls{socialengineering} zu schützen, sind folgende Massnahmen zentral:
+
+\begin{enumerate}
+    \item \textbf{Sensibilisierung und Schulung:} Regelmässige Aufklärung der Mitarbeitenden über gängige Betrugsmaschen.
+    \item \textbf{Kritische Prüfung:} Identitäten von Personen (insbesondere bei telefonischen oder digitalen Anfragen) stets über offizielle Kanäle verifizieren.
+    \item \textbf{Klare Prozesse:} Eindeutige Richtlinien für die Vergabe von Zugangsdaten und physischen Zutritten etablieren.
+\end{enumerate}
+
+\printbibliography
+
+\printglossary[type=\acronymtype, title=Akronyme]
+\printglossary[title=Glossar]
+
+\end{document}

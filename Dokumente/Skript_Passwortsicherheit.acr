@@ -1,6 +1,0 @@
-\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
-\begin{theglossary}\glossaryheader
-\glsgroupheading{M}\relax \glsresetentrylist %
-\glossentry{mfa}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{2\delimN 3}}}%
-\end{theglossary}\glossarypostamble

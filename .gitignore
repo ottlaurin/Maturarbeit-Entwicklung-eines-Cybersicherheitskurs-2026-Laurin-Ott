@@ -1,1 +1,118 @@
+# ============================================================
+# LaTeX temporäre Dateien
+# ============================================================
+
+# Hauptkompilierung
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+
+# Bibliographie (BibTeX / Biber)
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Glossar / Akronyme (makeglossaries)
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+*.slg
+*.slo
+*.sls
+
+# Index (makeindex)
+*.idx
+*.ilg
+*.ind
+*.ist
+
+# Beamer-Präsentation
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# Weitere LaTeX-Hilfsdateien
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+*.maf
+*.mtc
+*.mtc0
+*.ptc
+
+# latexmk
+*.fdb_latexmk
+
+# ============================================================
+# Allgemeine temporäre Dateien (Windows / Editoren)
+# ============================================================
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Temporäre Dateien
+*.tmp
+*.temp
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+~$*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ============================================================
+# Python
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+
+# ============================================================
+# VS Code
+# ============================================================
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# ============================================================
+# Sonstiges
+# ============================================================
 
