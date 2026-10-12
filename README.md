@@ -17,6 +17,7 @@ Maturitätsarbeit/
 ├── Code/
 │   └── Phishing/               # Quellcode und Simulationen zu Phishing-Angriffen (Moodle-Integration)
 |   └── Passwortsicherheit      # Interaktive CodeRunner-Aufgaben und Programmierfragen zu Passwörtern
+|     └── Bruteforce            # Interaktive Bruteforce Demonstration. 
 ├── Daten/                      # Erhobene Daten (z. B. Umfragen, Auswertungen)
 ├── Dokumentation/              # Technische Dokumentation und Arbeitsjournal
 ├── Dokumente/                  # Offizielle Dokumente (Anmeldung, Vereinbarungen etc.)
