@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER-FORCE // Bruteforce Simulation</title>
+    <style>
+        :root {
+            --bg-color: #030712;
+            --card-bg: rgba(11, 19, 41, 0.95);
+            --primary: #00ff66;
+            --primary-glow: rgba(0, 255, 102, 0.4);
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+            --border: #00ff66;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            background-color: var(--card-bg);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 25px var(--primary-glow);
+            backdrop-filter: blur(8px);
+            border-radius: 8px;
+            padding: 28px;
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .header h1 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: rgba(3, 7, 18, 0.9);
+            border: 1px solid #1e293b;
+            border-radius: 4px;
+            color: var(--primary);
+            font-family: inherit;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        button:hover {
+            background-color: var(--primary);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .terminal-box {
+            margin-top: 24px;
+            background-color: rgba(2, 6, 23, 0.9);
+            border: 1px solid #1e293b;
+            border-radius: 4px;
+            padding: 16px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .terminal-box.active {
+            display: block;
+        }
+
+        .terminal-line {
+            margin: 4px 0;
+            color: var(--text-muted);
+        }
+
+        .live-stream {
+            color: var(--primary);
+            font-weight: bold;
+            word-break: break-all;
+            height: 24px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .result-box {
+            margin-top: 16px;
+            padding: 12px;
+            background-color: rgba(0, 255, 102, 0.05);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .pulse-text {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrixCanvas"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <h1>System Bruteforce</h1>
+        </div>
+
+        <form method="POST" id="crackForm">
+            <div class="input-group">
+                <input type="password" name="pwd" id="pwdInput" placeholder="Zielpasswort eingeben..." required value="{{ pwd if pwd else '' }}">
+            </div>
+            <button type="submit" id="submitBtn">SYSTEM KNACKEN</button>
+        </form>
+
+        <div class="terminal-box {% if result %}active{% endif %}" id="terminal" data-has-result="{% if result %}true{% else %}false{% endif %}" data-dauer="{{ dauer if dauer else '0' }}" data-revealed="{{ revealed_pwd if revealed_pwd else '' }}">
+            <div class="terminal-line">> INITIATIVE BRUTEFORCE ATTACK...</div>
+            <div class="terminal-line">> THREADS: MULTI-CORE (PARALLEL)</div>
+            
+            <div class="terminal-line" style="margin-top: 12px;">> ECHTZEIT MATCHING:</div>
+            <div class="live-stream" id="liveStream">INITIALISIERUNG...</div>
+
+            <div class="result-box" id="resultBox">
+                <div>> STATUS: <span id="statusText">WORKING...</span></div>
+                <div>> GEKNACKT: <span id="revealedPwd" style="color: #fff; text-decoration: underline;">---</span></div>
+                <div>> DAUER: <span id="dauerText">0.0000</span> SEC</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function setBlackBackground() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.fillStyle = '#030712';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        setBlackBackground();
+        window.addEventListener('resize', setBlackBackground);
+
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+        const fontSize = 14;
+        let columns = Math.floor(canvas.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(3, 7, 18, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff66';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        const form = document.getElementById('crackForm');
+        const terminal = document.getElementById('terminal');
+        const liveStream = document.getElementById('liveStream');
+        const statusText = document.getElementById('statusText');
+        const revealedPwd = document.getElementById('revealedPwd');
+        const dauerText = document.getElementById('dauerText');
+
+        let matrixInterval = null;
+        let streamInterval = null;
+        let timerInterval = null;
+
+        // Auslesen der Daten aus den HTML5 Data-Attributen
+        const hasResult = terminal.getAttribute('data-has-result') === 'true';
+
+        if (hasResult) {
+            const serverDauer = parseFloat(terminal.getAttribute('data-dauer')) || 0;
+            const pwdVal = terminal.getAttribute('data-revealed');
+            const startTime = Date.now();
+            
+            terminal.classList.add('active');
+            statusText.innerText = "WORKING...";
+            statusText.classList.add('pulse-text');
+            
+            matrixInterval = setInterval(drawMatrix, 33);
+            
+            streamInterval = setInterval(() => {
+                let randomGuess = "";
+                for(let i = 0; i < pwdVal.length; i++) {
+                    randomGuess += matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                }
+                liveStream.innerText = randomGuess;
+            }, 30);
+
+            timerInterval = setInterval(() => {
+                let elapsed = (Date.now() - startTime) / 1000;
+                dauerText.innerText = elapsed.toFixed(4);
+            }, 50);
+
+            setTimeout(() => {
+                clearInterval(matrixInterval);
+                clearInterval(streamInterval);
+                clearInterval(timerInterval);
+                setBlackBackground();
+
+                statusText.innerText = "GEKNACKT";
+                statusText.classList.remove('pulse-text');
+                revealedPwd.innerText = pwdVal;
+                liveStream.innerText = pwdVal;
+                dauerText.innerText = serverDauer.toFixed(4);
+            }, 1200);
+        }
+
+        form.addEventListener('submit', function() {
+            terminal.classList.add('active');
+            statusText.innerText = "WORKING...";
+            statusText.classList.add('pulse-text');
+            revealedPwd.innerText = "---";
+            
+            const pwdLen = document.getElementById('pwdInput').value.length || 4;
+            const startTime = Date.now();
+
+            matrixInterval = setInterval(drawMatrix, 33);
+
+            streamInterval = setInterval(() => {
+                let randomGuess = "";
+                for(let i = 0; i < pwdLen; i++) {
+                    randomGuess += matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                }
+                liveStream.innerText = randomGuess;
+            }, 30);
+
+            timerInterval = setInterval(() => {
+                let elapsed = (Date.now() - startTime) / 1000;
+                dauerText.innerText = elapsed.toFixed(4);
+            }, 50);
+        });
+    </script>
+</body>
+</html>
