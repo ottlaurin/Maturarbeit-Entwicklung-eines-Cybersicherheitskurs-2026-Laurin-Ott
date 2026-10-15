@@ -1,3 +1,12 @@
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#     "flask>=3.1.3",
+#     "numba>=0.68.0",
+#     "numpy>=2.5.4",
+# ]
+# ///
+
 # -*- coding: utf-8 -*-
 import time
 import numpy as np

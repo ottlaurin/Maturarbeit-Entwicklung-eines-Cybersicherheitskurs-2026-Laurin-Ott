@@ -12,7 +12,7 @@
 | Mai 2026 | Phishing Simulator mit Hilfe von KI erstellt (siehe [#6](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/6)). |
 | Juni 2026 | ETH STIU 2026 besucht (Event Vorstellung CyberQuest) (siehe [#7](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/7)). |
 | Juni 2026 | Thema finden und einschränken (siehe [#9](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/9)). |
-| Juni 2026 | Passwort CodeRunner-Frage erstellt (siehe [#8](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/8)). | 
+| Juni 2026 | Passwort CodeRunner-Frage erstellt (siehe [#8](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/8)). |
 | Juli 2026 | In die Fachliteratur und Themenbereiche der Cybersicherheit eingelesen(siehe [#27](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/27)). |
 | August 2026 | Erstes Skript für den Cybersicherheitskurs grob erstellt (siehe [#23](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/23)). |
 | September 2026 | Kursinhalte erstellt und ausgebaut (siehe [#23](https://github.com/ottlaurin/Maturarbeit-Entwicklung-eines-Cybersicherheitskurs-2026-Laurin-Ott/issues/23)). |

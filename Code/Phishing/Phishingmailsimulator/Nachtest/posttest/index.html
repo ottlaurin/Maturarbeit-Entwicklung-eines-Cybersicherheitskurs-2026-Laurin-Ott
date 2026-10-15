@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phishing-Test</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-bar"><span class="app-icon">🎣</span><h1 id="app-title">Phishing-Test – Kantonsschule Im Lee</h1></div>
+  <div class="progress-strip"><span id="progress-label">0 von 8 E-Mails beurteilt</span><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div>
+
+  <main class="screen" id="start-screen">
+    <div class="start-card">
+      <div class="hero">📧</div><h2 id="start-title">Phishing-Test</h2>
+      <p id="start-copy"></p>
+      <div class="info-row"><div class="info-tile"><div class="n">8</div><div class="l">E-Mails</div></div><div class="info-tile"><div class="n" id="task-type-icon">✓</div><div class="l" id="task-type-label">Entscheidungen</div></div><div class="info-tile"><div class="n">🔒</div><div class="l">Ohne Hinweise</div></div></div>
+      <div class="tip-box" id="start-rules"></div>
+      <button class="btn btn-start" onclick="startSim()">Test starten →</button>
+    </div>
+  </main>
+
+  <main class="screen" id="email-screen">
+    <div class="mail-window">
+      <div class="mail-topbar"><span>📥 Posteingang</span><span id="mode-badge" class="diff-badge">Test</span><span class="mail-counter" id="email-counter">1 / 8</span></div>
+      <div class="mail-header">
+        <div class="mh-row"><span class="mh-label">Von</span><span id="email-sender-cell"></span></div>
+        <div class="mh-row"><span class="mh-label">An</span><span id="email-to-display"></span></div>
+        <div class="mh-row"><span class="mh-label">Datum</span><span id="email-date-display"></span></div>
+        <div class="mail-subject" id="email-subject-display"></div>
+      </div>
+      <div class="mail-body" id="email-body-area"></div>
+      <div class="action-section">
+        <div class="action-question">Ist diese E-Mail legitim oder Phishing?</div>
+        <div class="action-bar" id="action-bar"></div>
+        <div class="next-wrap"><button class="btn btn-next" id="next-btn" onclick="nextEmail()" style="display:none">Nächste Mail →</button></div>
+      </div>
+    </div>
+  </main>
+
+  <main class="screen" id="results-screen">
+    <div class="results-card">
+      <h2 id="results-title">🏁 Auswertung</h2>
+      <div class="score-hero"><div class="score-big"><span id="res-score">0</span><span style="font-size:1.6rem;color:#9ca3af"> / <span id="res-max">8</span></span></div><div class="score-sub"><span id="res-pct">0%</span> <span id="score-label">Gesamtpunktzahl</span></div></div>
+      <div class="res-stats"><div class="stat-tile"><div class="stat-n"><span id="res-correct">0</span> / <span id="res-total">8</span></div><div class="stat-l" id="correct-label">Richtige Einordnungen</div></div></div>
+      <div class="res-rating" id="res-rating"></div><div class="res-det-title" id="details-title" style="display:none">Detailübersicht:</div><div id="res-details"></div>
+    </div>
+    <div class="tips-card" id="tips-card" style="display:none"><h3>📚 Die wichtigsten Erkennungsmerkmale</h3><ul><li><strong>Absender-Domain prüfen:</strong> Kleine Abweichungen wie zusätzliche Wörter oder falsche Endungen sind verdächtig.</li><li><strong>Links vor dem Klicken prüfen:</strong> Die Ziel-Adresse muss zum angeblichen Absender passen.</li><li><strong>Zeitdruck hinterfragen:</strong> Drohungen und knappe Fristen sollen zu unüberlegtem Handeln verleiten.</li><li><strong>Direkt in die bekannte App oder Website gehen:</strong> Zugangsdaten niemals über einen Mail-Link eingeben.</li></ul></div>
+  </main>
+
+  <div id="reason-screen" class="reason-overlay" style="display:none">
+    <div class="reason-card"><h2>Welches Merkmal war am wichtigsten?</h2><p>Wählen Sie die Begründung, die Ihre Einschätzung am besten stützt.</p><div id="reason-options" class="reason-options"></div><button class="btn btn-neutral" onclick="cancelReason()">Zurück</button><button class="btn btn-next" onclick="submitReason()">Antwort bestätigen</button></div>
+  </div>
+
+  <script>window.TEST_MODE='posttest';</script><script src="js/scorm.js"></script><script src="js/data.js"></script><script src="js/app.js"></script>
+</body>
+</html>
