@@ -1,0 +1,194 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- PAKETE FÜR DEUTSCHE SPRACHE & SCHRIFTART ---
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{docmute}
+
+% --- CSQUOTES (Vom Biblatex-Paket empfohlen) ---
+\usepackage{csquotes}
+
+% --- MATHE, ENUMERATE, FLOAT & LAYOUT ---
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=2.5cm}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{float}
+
+% --- TCOLORBOX FÜR HIGHLIGHT- & AUFGABENBOXEN ---
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{taskbox}[1][]{
+    colback=blue!5!white,
+    colframe=blue!60!black,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=2mm,
+    boxrule=0.8pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+\newtcolorbox{solutionbox}[1][Lösung]{
+    colback=green!5!white,
+    colframe=green!50!black,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=2mm,
+    boxrule=0.8pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+\newtcolorbox{emailbox}[1][]{
+    colback=red!4!white,
+    colframe=red!65!black,
+    fonttitle=\bfseries,
+    title={#1},
+    arc=1.5mm,
+    boxrule=0.8pt,
+    left=4mm, right=4mm, top=3mm, bottom=3mm
+}
+
+% --- FARBEN & VERLINKUNGEN ---
+\usepackage{xcolor}
+\usepackage[colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black, citecolor=blue!60!black]{hyperref}
+
+% --- CLEVEREF (MUSS NACH HYPERREF GELADEN WERDEN) ---
+\usepackage[ngerman]{cleveref}
+\crefname{figure}{Abbildung}{Abbildungen}
+\Crefname{figure}{Abbildung}{Abbildungen}
+\crefname{table}{Tabelle}{Tabellen}
+\Crefname{table}{Tabelle}{Tabellen}
+\crefname{section}{Abschnitt}{Abschnitte}
+\Crefname{section}{Abschnitt}{Abschnitte}
+
+% --- LITERATURVERZEICHNIS MIT BIBLATEX & BIBER ---
+% --- LITERATURVERZEICHNIS MIT BIBLATEX & BIBER ---
+\sloppy
+\usepackage[sorting=none, style=numeric, backend=biber]{biblatex}
+\addbibresource{literatur.bib}
+
+% --- SCHÖNERE UND BESSER UMBROCHENE URLS ---
+\usepackage{xurl} 
+\urlstyle{same}   
+
+% --- GLOSSAR & ABKÜRZUNGSVERZEICHNIS ---
+\usepackage[toc, acronym, nonumberlist]{glossaries}
+\makeglossaries
+
+% Custom Glossar-Style für optisch ansprechende Formatierung
+\newglossarystyle{mycleanstyle}{%
+  \setglossarystyle{long}%
+  \renewenvironment{theglossary}%
+     {\begin{longtable}{@{}p{5.8cm}@{\hspace{0.6cm}}p{9.6cm}@{}}}%
+     {\end{longtable}}%
+  \renewcommand*{\glossentry}[2]{%
+    \textbf{\glsentryname{##1}} & \glsentrydesc{##1}\\[0.9em]%
+  }%
+  \renewcommand*{\glsgroupskip}{}%
+}
+\setglossarystyle{mycleanstyle}
+
+% Inkludieren der separaten Abkürzungs- und Glossardateien
+\input{akronyme.tex}
+\input{glossar.tex}
+
+% --- DEFINITION FÜR SUBSUBSUBSECTION (ABGESICHERT) ---
+\providecommand{\subsubsubsection}[1]{%
+  \vspace{0.8em}\noindent\textbf{#1}\par\vspace{0.4em}%
+}
+
+\pagestyle{empty} % Keine Seitenzahlen auf dem Titelblatt
+
+\begin{document}
+
+\begin{center}
+    % School Name
+    {\Large \textbf{Kantonsschule Im Lee Winterthur}}\\[0.4cm]
+    {\large Maturitätsarbeit HS 2026/27}\\[2.5cm]
+
+    {\large \textbf{Entwicklung eines Cybersicherheitskurses -- Ein Konzept auf Gymnasialstufe zur Sensibilisierung für digitale Gefahren}}\\[3.5cm]
+
+    \begin{tabular}{ll}
+        \textbf{Verfasser:} & Laurin Ott \\
+        \textbf{Klasse:} & 4c
+    \end{tabular}\\[2.5cm]
+
+    \begin{tabular}{ll}
+        \textbf{Betreuungsperson:} & Cyril Blum % Oder die entsprechende Lehrperson
+    \end{tabular}\\[3cm]
+
+    \vfill
+
+    {\large Winterthur, 4. Januar 2027}
+\end{center}
+
+% --- INHALTSVERZEICHNIS ---
+\newpage
+\pagenumbering{gobble} % Keine Seitennummerierung für das Inhaltsverzeichnis
+\tableofcontents
+\thispagestyle{empty}
+
+% --- STRUKTUR & SEITENNUMMERIERUNG AB EINLEITUNG ---
+\newpage
+\pagenumbering{arabic} % Ab hier beginnt die sichtbare Nummerierung mit Seite 1
+\setcounter{page}{1}
+
+\section{Einleitung}
+\label{sec:einleitung}
+
+\subsection{Motivation und Relevanz}
+In einer Welt, in der sich viele Aspekte unseres Lebens online abspielen, gehören Cyberangriffe längst zum Alltag. Während Sicherheitssoftware, Firewalls und Verschlüsselungen immer besser werden, haben Hacker eine viel einfachere Schwachstelle für sich entdeckt, nämlich uns Menschen. Denn am Ende nützt das beste Sicherheitssystem nichts, wenn man selbst auf den falschen Link klickt.
+
+Dass Phishing kein theoretisches Problem aus den Nachrichten ist, zeigen die offiziellen Zahlen des Schweizer Bundesamts für Cybersicherheit \cite{bacs2026statistik}. Allein in der Woche 41 des Jahres 2026 wurden in der Schweiz 1'271 Cybervorfälle gemeldet\cite{bacs2026statistik}. Mit 503 Meldungen steht Phishing weit an der Spitze aller Kategorien weit vor allgemeinem Betrug oder Spam\cite{bacs2026statistik}. Schaut man sich den Verlauf an, sieht man einen krassen Anstieg. Anfang 2026 lagen die Zahlen noch bei rund 140 Meldungen pro Woche, im Herbst waren es plötzlich über 500\cite{bacs2026statistik}. 
+
+Was die Sache heute so gefährlich macht, ist der rasante Fortschritt von \newline Künstlicher Intelligenz (KI). Früher konnte man Phishing-Mails meistens sofort am schlechten Deutsch, \mbox{komischen} Satzstellungen oder Grammatikfehlern erkennen. \newline Durch moderne KI-Tools schreiben Angreifer heute auf Knopfdruck fehlerfreie, extrem überzeugende Texte. KI macht es Kriminellen viel leichter, Angriffe über alle möglichen Kanäle vollautomatisch zu \mbox{skalieren,} sei es per Mail, Anruf (Voice-Phishing machte in Woche 41 immerhin 94 Fälle aus\cite{bacs2026statistik}) oder Messenger-Diensten.
+
+Wie nah das Thema geht, habe ich selbst erlebt. Als wir Ferien gebucht hatten, \mbox{wurde} ein Partnerunternehmen unseres Reiseanbieters gehackt. Kurz darauf bekam mein \mbox{Vater} eine erschreckend gut gemachte WhatsApp-Nachricht, die zu einer dringenden Bestätigung aufforderte. Das Fiese daran war, alle Daten hatten absolut gestimmt. Von unseren Namen über das Reiseziel bis hin zu den exakten Reisedaten war alles \mbox{korrekt.} Nur wer ganz genau hinschaute, erkannte die Phishing-Falle, nämlich daran, dass die Domain nicht übereinstimmte mit der des Reiseanbieters und ausserdem dass die WhatsApp-Nachricht von einem Business-Account mit brasilianischer Ländervorwahl stammte, obwohl unsere Reise gar nicht nach Brasilien ging. Wenn echte, geleakte Daten mit \mbox{KI-generierten} Texten kombiniert werden, reichen einfache Bauchgefühle als Schutz oft nicht mehr aus.
+
+Obwohl das Thema uns Jugendliche jeden Tag betrifft, kommt es in der Schule oft zu kurz. Wir nutzen zwar ständig Smartphones und Laptops, wissen aber selten, wie man ein wirklich sicheres Passwort erstellt oder wie man sich vor Phishing-Angriffen schützen kann.
+
+\newpage
+\subsection{Zielsetzung und Fragestellung}
+Das Ziel dieser Maturitätsarbeit ist es, einen interaktiven und praxisnahen \mbox{Cybersicherheitskurs} für Gymnasialschülerinnen und -schüler zu entwickeln. Statt nur \newline trockene Theorie zu büffeln, sollen Jugendliche durch anschauliche Beispiele, \newline mathematische Hintergründe und echte Fallstudien verstehen, wie Cyberangriffe \newline wirklich funktionieren. Der Fokus liegt dabei auf zwei Themen, die uns im Alltag \mbox{besonders} betreffen, nämlich \mbox{\textbf{Passwortsicherheit}} und \textbf{Phishing}.
+
+Dabei geht die Arbeit folgenden Hauptfragen nach:
+\begin{itemize}
+    \item Welche theoretischen und mathematischen Grundlagen (wie die Shannon-Entropie) braucht man, um Schülerinnen und Schülern Passwortstärke und Phishing-Mechanismen verständlich zu erklären?
+    \item Wie muss ein modernes Unterrichtskonzept aufgebaut sein, um Jugendliche für \mbox{aktuelle} Cybergefahren zu sensibilisieren und ihnen konkrete Tipps für den Alltag mitzugeben?
+\end{itemize}
+
+\subsection{Aufbau der Arbeit}
+Die vorliegende Arbeit gliedert sich wie folgt:
+\begin{itemize}
+    \item \textbf{\Cref{sec:passwortsicherheit}} behandelt die theoretischen und mathematischen Grundlagen der \newline {Passwortsicherheit.} Neben zentralen Begriffen und typischen Angriffsarten \newline (wie Brute-Force oder Wörterbuchangriffen) wird die Shannon-Entropie \newline ($E = L \cdot \log_2(R)$) sowie aktuelle Best Practices (z.\,B. nach \gls{nist}) erläutert.
+    \item \textbf{\Cref{sec:phishing}} widmet sich dem Thema Phishing und Social Engineering. \newline Es werden verschiedene Angriffsformen (klassisch, Spear-Phishing, Vishing, \mbox{Smishing,} \mbox{Quishing}), psychologische Wirkungsweisen sowie Schutzmassnahmen \mbox{analysiert.}
+    \item \textbf{\Cref{sec:aufgaben}} beinhaltet praxiserprobte Aufgabenblätter und Fallbeispiele, die direkt im \mbox{Unterricht} eingesetzt werden können.
+    \item \textbf{Praktische Tools \& Interaktive Komponenten:} Um das gelernte Wissen \mbox{erlebbar} zu machen, ergänzen zwei selbst entwickelte Web-Tools den Kurs:
+    \begin{itemize}
+        \item Ein \textbf{interaktiver Entropie-Rechner}, mit dem Schülerinnen und Schüler die mathematische Stärke von Passwörtern in Bit berechnen und nachvollziehen, wie lange \mbox{verschiedene} Compute-Ressourcen benötigen würden, um durch einen \newline Brute-Force-Angriff geknackt zu werden.
+        \item Ein \textbf{Phishing-Simulator}, bei dem Schülerinnen und Schüler entscheiden \mbox{müssen,} ob eine E-Mail echt oder Phishing ist. Wenn es Phishing ist, müssen sie genau begründen und markieren, an welchen Merkmalen sie den Betrug erkannt haben.
+    \end{itemize}
+\end{itemize}
+
+\section{Skript / Kursmaterial}
+\label{sec:skript}
+
+\input{MaturaSkript.tex}
+
+% --- LITERATURVERZEICHNIS
+\newpage
+\raggedright
+\printbibliography[heading=bibintoc,title={Literaturverzeichnis}]
+
+\vspace{1.5cm}
+
+% --- Akronyme ---
+\printglossary[type=\acronymtype, title=Akronyme]
+
+\newpage
+% --- GLOSSAR ---
+\printglossary[title=Glossar]
+
+\end{document}
