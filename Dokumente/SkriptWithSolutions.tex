@@ -126,18 +126,18 @@
 \label{sec:passwortsicherheit}
 
 \subsection{Einleitung}
-In fast allen IT-Systemen bilden Passwörter die erste Hürde gegen unbefugten Zugriff. In der Praxis zeigt sich jedoch immer wieder, dass schwache, kompromittierte oder mehrfach genutzte Passwörter eine der grössten Sicherheitslücken darstellen. Dieses Skript gibt einen Überblick über die mathematischen Grundlagen der Passwortstärke und fasst die aktuellen Empfehlungen zur Absicherung digitaler Identitäten zusammen \cite{nist2024}.
+In fast allen IT-Systemen bilden \glslink{passwort}{Passwörter} die erste Hürde gegen unbefugten Zugriff. In der Praxis zeigt sich jedoch immer wieder, dass schwache, kompromittierte oder mehrfach genutzte \glslink{passwort}{Passwörter} eine der grössten Sicherheitslücken darstellen. Dieses Skript gibt einen Überblick über die mathematischen Grundlagen der \gls{passwort}-Stärke und fasst die aktuellen Empfehlungen zur Absicherung digitaler Identitäten zusammen \cite{nist2024}.
 
 \subsection{Grundlegende Begriffe und Angriffsarten}
-In der Authentisierung und Passwortsicherheit spielen verschiedene Konzepte und \mbox{Bedrohungen} eine entscheidende Rolle:
+In der Authentisierung und \gls{passwort}-Sicherheit spielen verschiedene Konzepte und \mbox{Bedrohungen} eine entscheidende Rolle:
 
 Neben dem rein mathematischen \gls{bruteforce} nutzen Angreifer in der Praxis sehr häufig ein \gls{dictionaryattack}, bei dem gezielt Listen mit geläufigen Wörtern, Namen und bekannten Daten \mbox{durchprobiert} werden. Um diesen \mbox{Methoden} zu entgehen, ist eine hohe \gls{entropie} entscheidend. Zusätzlich schützt moderne \mbox{\gls{mfa}} (z.\,B. eine Bestätigung direkt auf dem Smartphone) effektiv vor unbefugtem Zugriff.
 
 \subsection{Mathematische Grundlage: Die Passwort-Entropie}
 \label{subsec:entropie}
-Die Stärke eines \gls{passwort}s gegenüber Offline-Angriffen lässt sich mathematisch über die Shannon-\gls{entropie} beschreiben. Sie gibt an, wie viele Versuche ein Angreifer im \mbox{schlechtesten Fall} benötigt, um den gesamten Suchraum zu durchsuchen.
+Die Stärke eines \gls{passwort}s gegenüber Angriffen lässt sich mathematisch über die Shannon-\gls{entropie} beschreiben. Sie gibt an, wie viele Versuche ein Angreifer im \mbox{schlechtesten Fall} benötigt, um den gesamten Suchraum zu durchsuchen.
 
-Die Formel zur Berechnung der Entropie $E$ (in Bit) lautet:
+Die Formel zur Berechnung der \gls{entropie} $E$ (in Bit) lautet:
 \[
 E = L \cdot \log_2(R)
 \]
@@ -145,52 +145,55 @@ E = L \cdot \log_2(R)
 Dabei stehen die Variablen für folgende Werte:
 \begin{itemize}
     \item $L$: Die Länge des \gls{passwort}s (Anzahl der verwendeten Zeichen).
-    \item $R$: Die Grösse des verfügbaren Zeichensatzes \newline (z.\,B. Kleinbuchstaben, Grossbuchstaben, Zahlen, Sonderzeichen).
+    \item $R$: Die Grösse des verfügbaren Zeichensatzes (z.\,B. Kleinbuchstaben, Grossbuchstaben, Zahlen, Sonderzeichen).
 \end{itemize}
 \newpage
 \subsubsection{Beispielrechnung}
 \begin{itemize}
-    \item \textbf{8 Zeichen (nur Kleinbuchstaben):} Bei $L = 8$ und einem Zeichensatz von $R = 26$ ergibt sich eine Entropie von:
+    \item \textbf{8 Zeichen (nur Kleinbuchstaben):} Bei $L = 8$ und einem Zeichensatz von $R = 26$ ergibt sich eine \gls{entropie} von:
     \[
     E_8 = 8 \cdot \log_2(26) \approx 37{,}6 \text{ Bit}
     \]
-    \item \textbf{Verdopplung auf 16 Zeichen (gleicher Zeichensatz):} Bei $L = 16$ und $R = 26$ steigt die Entropie linear mit der Länge auf:
+    \item \textbf{Verdopplung auf 16 Zeichen (gleicher Zeichensatz):} Bei $L = 16$ und $R = 26$ steigt die \gls{entropie} linear mit der Länge auf:
     \[
     E_{16} = 16 \cdot \log_2(26) \approx 75{,}2 \text{ Bit}
     \]
 \end{itemize}
 
-In \cref{tab:entropie_vergleich} sind die Entropiewerte für verschiedene Passwortlängen und Zeichensätze zusammenfassend dargestellt.
+In \cref{tab:entropie_vergleich} sind die \gls{entropie}-Werte für verschiedene \gls{passwort}-Längen und Zeichensätze zusammenfassend dargestellt.
 
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|l|c|c|r|}
         \hline
-        \textbf{Zeichensatz ($R$)} & \textbf{Länge ($L$)} & \textbf{Formel} & \textbf{Entropie ($E$)} \\
+        \textbf{Zeichensatz ($R$)} & \textbf{Länge ($L$)} & \textbf{Formel} & \textbf{\gls{entropie} ($E$)} \\
         \hline
         Kleinbuchstaben ($R=26$) & 8 & $8 \cdot \log_2(26)$ & $\approx 37{,}6$ Bit \\
         Kleinbuchstaben ($R=26$) & 16 & $16 \cdot \log_2(26)$ & $\approx 75{,}2$ Bit \\
         Alle Zeichen ($R=94$) & 8 & $8 \cdot \log_2(94)$ & $\approx 52{,}4$ Bit \\
         Kleinbuchstaben ($R=26$) & 20 & $20 \cdot \log_2(26)$ & $\approx 94{,}0$ Bit \\
+        Alle Buchstaben ($R=52$) & 20 & $20 \cdot \log_2(52)$ & $\approx 114{,}0$ Bit \\
+        Alle Buchstaben + Zahlen ($R=62$) & 20 & $20 \cdot \log_2(62)$ & $\approx 119{,}1$ Bit \\
+        Alle Zeichen ($R=94$) & 20 & $20 \cdot \log_2(94)$ & $\approx 131{,}1$ Bit \\
         \hline
     \end{tabular}
-    \caption{Vergleich der Passwort-Entropie für verschiedene Längen und Zeichensätze.}
+    \caption{Vergleich der \gls{passwort}-\gls{entropie} für verschiedene Längen und Zeichensätze.}
     \label{tab:entropie_vergleich}
 \end{table}
 
 \subsubsection{Fazit der Berechnung}
-Da die Anzahl der auszuprobierenden Kombinationen im Hintergrund exponentiell mit $2^E$ wächst, schützt das Verlängern des \gls{passwort}s um ein Vielfaches effektiver vor Angriffen als das krampfhafte Einfügen von Sonderzeichen bei einem zu kurzen \gls{passwort}. Zudem verhindert ein langes, zufälliges Passwort, dass ein \gls{dictionaryattack} erfolgreich ist.
+Da die Anzahl der auszuprobierenden Kombinationen im Hintergrund exponentiell mit $2^E$ (E=\gls{entropie}) wächst, schützt das Verlängern des \gls{passwort}s um ein Vielfaches effektiver vor Angriffen als das krampfhafte Einfügen von Sonderzeichen bei einem zu kurzen \gls{passwort}. Zudem verhindert ein langes, zufälliges \gls{passwort}, dass ein \gls{dictionaryattack} erfolgreich ist.
 
 \newpage
 
 \subsection{Aktuelle Richtlinien und Best Practices}
 Moderne Richtlinien haben sich von alten Regeln verabschiedet. Heute gelten folgende Hauptempfehlungen:
 \begin{enumerate}
-    \item \textbf{Länge vor Komplexität:} Bevorzugung von \gls{passphrase}n aus mehreren \mbox{zufälligen} Wörtern. Selbst wenn Angreifer raffinierte Wörterbuchangriffe oder Kombinationen ausprobieren, bricht ein System bei langen Passphrasen \mbox{(oft auch ohne erzwungene Sonderzeichen)} ein, weil die schiere Länge den Suchraum unknackbar macht (Entropie über 80 Bit).
-    \item \textbf{Keine wiederholte Nutzung von Passwörtern:} Jedes Konto sollte ein \mbox{einzigartiges} Passwort besitzen, um die Risiken bei \gls{datenleck}s zu minimieren.
-    \item \textbf{Vermeidung von Passwortänderungen ohne Anlass:} Regelmässige \mbox{erzwungene} Passwortänderungen erhöhen die Wahrscheinlichkeit, dass Nutzer schwächere Passwörter wählen oder diese aufschreiben. Nur bei Verdacht auf Kompromittierung sollte ein Passwort geändert werden.  
-    \item \textbf{Einsatz von \gls{passwortmanager}:} Generierung und Verwaltung unikater \mbox{Passwörter}.
-    \item \textbf{Aktivierung von \gls{mfa}:} Einrichtung eines zweiten Faktors \newline(z.\,B. aufs \mbox{Smartphone}).
+    \item \textbf{Länge vor Komplexität:} Bevorzugung von \gls{passphrase}n aus mehreren \mbox{zufälligen} Wörtern. Selbst wenn Angreifer raffinierte Wörterbuchangriffe oder Kombinationen ausprobieren, bricht ein System bei langen Passphrasen \mbox{(oft auch ohne erzwungene Sonderzeichen)} ein, weil die schiere Länge den Suchraum unknackbar macht (\gls{entropie} über 80 Bit).
+    \item \textbf{Keine wiederholte Nutzung von \glslink{passwort}{Passwörtern}:} Jedes Konto sollte ein \mbox{einzigartiges} \gls{passwort} besitzen, um die Risiken bei \gls{datenleck}s zu minimieren.
+    \item \textbf{Vermeidung von \gls{passwort}-Änderungen ohne Anlass:} Regelmässige \mbox{erzwungene} \gls{passwort}-Änderungen erhöhen die Wahrscheinlichkeit, dass Nutzer schwächere \glslink{passwort}{Passwörter} wählen oder diese aufschreiben. Nur bei Verdacht auf Kompromittierung sollte ein \gls{passwort} geändert werden.  
+    \item \textbf{Einsatz von \gls{passwortmanager}:} Generierung und Verwaltung unikater \mbox{\glslink{passwort}{Passwörter}}.
+    \item \textbf{Aktivierung von \gls{mfa}:} Einrichtung eines zweiten Faktors (z.\,B. aufs \mbox{Smartphone}).
 \end{enumerate}
 
 \newpage
@@ -199,15 +202,15 @@ Moderne Richtlinien haben sich von alten Regeln verabschiedet. Heute gelten folg
 \label{sec:phishing}
 
 \subsection{Einleitung}
-In der digitalen Welt bilden nicht nur technische Barrieren wie Passwörter die \mbox{Abwehrlinie}, sondern vor allem der Mensch selbst. Eines der erfolgreichsten und am \mbox{häufigsten} genutzten Einfallstore für Cyberkriminelle ist \gls{phishing}. Dabei wird gezielt die \mbox{menschliche Psyche} ausgenutzt, um an vertrauliche Daten zu gelangen oder \mbox{Schadsoftware} zu verbreiten \cite{bsi2023smtpsmuggling}.
+In der digitalen Welt bilden nicht nur technische Barrieren wie \glslink{passwort}{Passwörter} die \mbox{Abwehrlinie}, sondern vor allem der Mensch selbst. Eines der erfolgreichsten und am \mbox{häufigsten} genutzten Einfallstore für Cyberkriminelle ist \gls{phishing}. Dabei wird gezielt die \mbox{menschliche Psyche} ausgenutzt, um an vertrauliche Daten zu gelangen oder \mbox{Schadsoftware} zu verbreiten \cite{bsi2023smtpsmuggling}.
 
 \subsection{Grundlegende Begriffe und Angriffsarten}
 \gls{phishing} gehört zu den klassischen \gls{socialengineering}-Angriffen. Statt komplexe \mbox{technische Systeme} direkt zu hacken, manipulieren Angreifer gezielt Personen:
 \begin{itemize}
-    \item \textbf{Klassisches Phishing:} Täuschend echte E-Mails, die \mbox{vorgeben}, von \mbox{vertrauenswürdigen} \mbox{Institutionen} \newline (wie Banken, Streaming-Diensten oder Behörden) zu \mbox{stammen}.
-    \item \textbf{Spear-Phishing:} Ein gezielter Angriff (\gls{spearphishing}), der auf eine spezifische Person oder bestimmte Mitarbeiter zugeschnitten ist, um Vertrauen zu erwecken.
-    \item \textbf{Vishing \& Smishing:} Betrugsversuche über Telefonanrufe (\textit{Voice}) oder \mbox{Kurznachrichten} (\textit{SMS}).
-    \item \textbf{Quishing:} Das Platzieren von manipulierten QR-Codes (z. B. auf Plakaten oder Parkuhren), die zu gefälschten Webseiten führen.
+    \item \textbf{\gls{klassischesphishing}:} Täuschend echte E-Mails, die \mbox{vorgeben}, von \mbox{vertrauenswürdigen} \mbox{Institutionen} \newline (wie Banken, Streaming-Diensten oder Behörden) zu \mbox{stammen}.
+    \item \textbf{\gls{spearphishing}:} Ein gezielter Angriff (\gls{spearphishing}), der auf eine spezifische Person oder bestimmte Mitarbeiter zugeschnitten ist, um Vertrauen zu erwecken.
+    \item \textbf{\gls{vishing} \& \gls{smishing}:} Betrugsversuche über Telefonanrufe (\textit{Voice \rightarrow \gls{vishing}}) oder \mbox{Kurznachrichten} (\textit{SMS \rightarrow \gls{smishing}}).
+    \item \textbf{\gls{quishing}:} Das Platzieren von manipulierten QR-Codes (z. B. auf Plakaten oder Parkuhren), die zu gefälschten Webseiten führen.
 \end{itemize}
 
 \subsection{Psychologische Faktoren und Wirkungsweise}
@@ -220,8 +223,8 @@ Um sich vor \gls{phishing}-Angriffen zu schützen, gelten im Rahmen der IT-Siche
 \begin{enumerate}
     \item \textbf{Kritische Hürden bewahren:} Niemals unüberlegt auf Links klicken oder \mbox{Anhänge} von unbekannten Absendern öffnen.
     \item \textbf{Absender und URLs genau prüfen:} Auf Unstimmigkeiten in E-Mail-Adressen (z. B. Buchstabendreher in Domains) achten.
-    \item \textbf{Multi-Faktor-Authentisierung (MFA) nutzen:} Selbst wenn Anmeldedaten \mbox{abgegriffen werden}, verhindert ein zusätzlicher Faktor (wie eine Bestätigung auf dem Smartphone) unbefugten Zugriff.
-    \item \textbf{Keine sensiblen Daten preisgeben:} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach Passwörtern oder PINs.
+    \item \textbf{\gls{mfa} nutzen:} Selbst wenn Anmeldedaten \mbox{abgegriffen werden}, verhindert ein zusätzlicher Faktor (wie eine Bestätigung auf dem Smartphone) unbefugten Zugriff.
+    \item \textbf{Keine sensiblen Daten preisgeben:} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach \glslink{passwort}{Passwörtern} oder \gls{pin}s.
     \item \textbf{Dringlichkeit und Druckmittel hinterfragen:} E-Mails, die mit \mbox{unbegründeten} Drohungen (z.~B. sofortige Kontosperrung) oder kurzen Fristen Panik erzeugen \mbox{wollen}, kritisch prüfen.
     \item \textbf{Sprache und Anrede analysieren:} Auf unpersönliche Anreden (z.~B. „Sehr \mbox{geehrter} Kunde“) sowie grammatikalische Fehler, fehlende Umlaute oder \mbox{ungewöhnliche} Formulierungen achten.
     \item \textbf{Direktzugriffe bevorzugen:} Webseiten und Portale stets manuell über die \mbox{Eingabe} der bekannten Adresse im Browser aufrufen, anstatt Links aus E-Mails zu folgen.
@@ -246,32 +249,32 @@ Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen einem \newli
 \begin{solutionbox}[Musterlösung 3.1.1.1]
 \begin{itemize}
     \item \textbf{Brute-Force-Angriff:} Ein automatisierter Angriff, bei dem Programme \mbox{systematisch} alle möglichen Zeichenkombinationen durchprobieren.
-    \item \textbf{Dictionary Attack (Wörterbuchangriff):} Ein gezielter Angriff, bei dem Listen mit gebräuchlichen Wörtern, Namen und bekannten Passwörtern \mbox{systematisch} getestet werden.
+    \item \textbf{Dictionary Attack (Wörterbuchangriff):} Ein gezielter Angriff, bei dem Listen mit gebräuchlichen Wörtern, Namen und bekannten \glslink{passwort}{Passwörtern} \mbox{systematisch} getestet werden.
 \end{itemize}
 \end{solutionbox}
 
-\begin{taskbox}[{Aufgabe 3.1.1.2: Multi-Faktor-Authentisierung (MFA)}]
-Was bedeutet die Abkürzung \gls{mfa} und wie schützt sie einen Account, selbst wenn ein Angreifer das Passwort herausgefunden hat?
+\begin{taskbox}[{Aufgabe 3.1.1.2: MFA}]
+Was bedeutet die Abkürzung \gls{mfa} und wie schützt sie einen Account, selbst wenn ein Angreifer das \gls{passwort} herausgefunden hat?
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.1.1.2]
-\textbf{MFA} steht für \textbf{Multi-Faktor-Authentisierung}. Sie schützt einen Account, indem neben dem Passwort ein zweiter Faktor (z.\,B. eine Bestätigung auf dem Smartphone) erforderlich ist. Selbst wenn ein Angreifer das Passwort erlangt hat, bleibt der Zugriff ohne diesen zweiten Faktor verwehrt.
+\textbf{MFA} steht für \textbf{Multi-Faktor-Authentisierung}. Sie schützt einen Account, indem neben dem \gls{passwort} ein zweiter Faktor (z.\,B. eine Bestätigung auf dem Smartphone) erforderlich ist. Selbst wenn ein Angreifer das \gls{passwort} erlangt hat, bleibt der Zugriff ohne diesen zweiten Faktor verwehrt.
 \end{solutionbox}
 
 \newpage
 
 \subsubsection{Teil 2: Mathematische Berechnungen (Entropie)}
 
-Verwenden Sie die Formel zur Berechnung der Entropie aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}):
+Verwenden Sie die Formel zur Berechnung der \gls{entropie} aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}):
 \[
 E = L \cdot \log_2(R)
 \]
 
 \begin{taskbox}[{Aufgabe 3.1.2.1: Einfluss des Zeichensatzes ($R$)}]
-Gegeben ist ein Passwort der Länge $L = 10$.
+Gegeben ist ein \gls{passwort} der Länge $L = 10$.
 \begin{enumerate}[label=\alph*)]
-    \item Berechnen Sie die Entropie $E$, wenn nur Kleinbuchstaben verwendet werden \newline($R = 26$).
-    \item Berechnen Sie die Entropie $E$, wenn Klein-, Grossbuchstaben, Zahlen und Sonderzeichen verwendet werden ($R = 94$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn nur Kleinbuchstaben verwendet werden \newline($R = 26$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn Klein-, Grossbuchstaben, Zahlen und Sonderzeichen verwendet werden ($R = 94$).
 \end{enumerate}
 \end{taskbox}
 
@@ -283,12 +286,12 @@ Gegeben ist ein Passwort der Länge $L = 10$.
 \end{solutionbox}
 
 \begin{taskbox}[{Aufgabe 3.1.2.2: Länge vs. Komplexität}]
-Betrachten Sie die folgenden beiden Passwörter:
+Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 \begin{itemize}
-    \item \textbf{Szenario A:} Ein komplexes Passwort mit 8 Zeichen ($L = 8$), \newline das \mbox{Kleinbuchstaben}, \mbox{Grossbuchstaben}, \mbox{Zahlen} und \mbox{Sonderzeichen} nutzt \newline($R = 94$).
-    \item \textbf{Szenario B:} Ein zufälliges Passwort mit 20 Zeichen ($L = 20$), das nur aus Kleinbuchstaben besteht ($R = 26$).
+    \item \textbf{Szenario A:} Ein komplexes \gls{passwort} mit 8 Zeichen ($L = 8$), \newline das \mbox{Kleinbuchstaben}, \mbox{Grossbuchstaben}, \mbox{Zahlen} und \mbox{Sonderzeichen} nutzt \newline($R = 94$).
+    \item \textbf{Szenario B:} Ein zufälliges \gls{passwort} mit 20 Zeichen ($L = 20$), das nur aus Kleinbuchstaben besteht ($R = 26$).
 \end{itemize}
-\textbf{Aufgabe:} Berechnen Sie für beide Szenarien die Entropie $E$. Welches Passwort bietet eine höhere Entropie und warum entspricht dies der Regel „Länge vor \mbox{Komplexität}“?
+\textbf{Aufgabe:} Berechnen Sie für beide Szenarien die \gls{entropie} $E$. Welches \gls{passwort} bietet eine höhere \gls{entropie} und warum entspricht dies der Regel „Länge vor \mbox{Komplexität}“?
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.1.2.2]
@@ -296,7 +299,7 @@ Betrachten Sie die folgenden beiden Passwörter:
     \item \textbf{Szenario A ($L=8, R=94$):} $E_A = 8 \cdot \log_2(94) \approx 52{,}4 \text{ Bit}$
     \item \textbf{Szenario B ($L=20, R=26$):} $E_B = 20 \cdot \log_2(26) \approx 94{,}0 \text{ Bit}$
 \end{itemize}
-\textbf{Auswertung \& Begründung:} Szenario B bietet eine deutlich höhere Entropie ($94{,}0 \text{ Bit}$) als Szenario A ($52{,}4 \text{ Bit}$). Da der Suchraum im Hintergrund exponentiell mit $2^E$ wächst, vergrössert eine Zunahme der Länge ($L$) den Suchraum \mbox{wesentlich} stärker als ein grösserer Zeichensatz ($R$). Dies entspricht der Regel „Länge vor \mbox{Komplexität}“.
+\textbf{Auswertung \& Begründung:} Szenario B bietet eine deutlich höhere \gls{entropie} ($94{,}0 \text{ Bit}$) als Szenario A ($52{,}4 \text{ Bit}$). Da der Suchraum im Hintergrund exponentiell mit $2^E$ (E=\gls{entropie}) wächst, vergrössert eine Zunahme der Länge ($L$) den Suchraum \mbox{wesentlich} stärker als ein grösserer Zeichensatz ($R$). Dies entspricht der Regel „Länge vor \mbox{Komplexität}“.
 \end{solutionbox}
 
 \newpage
@@ -306,19 +309,19 @@ Betrachten Sie die folgenden beiden Passwörter:
 \begin{taskbox}[{Aufgabe 3.1.3.1: Richtlinien beurteilen}]
 Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(z.\,B. nach \gls{nist})? Begründen Sie Ihre Antwort kurz.
 \begin{enumerate}[label=\Alph*)]
-    \item „Ein sicheres Passwort muss alle 30 Tage geändert werden.“
-    \item „Passphrasen aus mehreren zufälligen Wörtern sind in der Regel sicherer und merkbarer als kurze, komplexe Zeichenketten.“
-    \item „Verwenden Sie das gleiche Passwort für mehrere Dienste, solange es sehr lang ist.“
-    \item „Der Einsatz eines Passwort-Managers wird empfohlen, um für jeden Dienst ein unikat zufälliges Passwort zu generieren.“
+    \item „Ein sicheres \gls{passwort} muss alle 30 Tage geändert werden.“
+    \item „\gls{passphrase}n aus mehreren zufälligen Wörtern sind in der Regel sicherer und merkbarer als kurze, komplexe Zeichenketten.“
+    \item „Verwenden Sie das gleiche \gls{passwort} für mehrere Dienste, solange es sehr lang ist.“
+    \item „Der Einsatz eines \gls{passwortmanager} wird empfohlen, um für jeden Dienst ein unikat zufälliges \gls{passwort} zu generieren.“
 \end{enumerate}
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.1.3.1]
 \begin{enumerate}[label=\Alph*)]
-    \item \textbf{Falsch:} Regelmässige erzwungene Änderungen verleiten Nutzer zu \mbox{schwächeren} Passwörtern oder Mustern. Eine Änderung sollte nur bei Verdacht auf Kompromittierung erfolgen.
-    \item \textbf{Richtig (Best Practice):} Passphrasen bieten durch ihre Länge eine hohe Entropie (über 80 Bit) und sind widerstandsfähiger gegen Angriffe.
-    \item \textbf{Falsch:} Passwörter dürfen niemals mehrfach genutzt werden, um \mbox{Folgeschäden} bei Datenlecks zu verhindern.
-    \item \textbf{Richtig (Best Practice):} Ein Passwort-Manager ermöglicht die sichere \mbox{Generierung} und Verwaltung von einzigartigen Passwörtern für jeden Dienst.
+    \item \textbf{Falsch:} Regelmässige erzwungene Änderungen verleiten Nutzer zu \mbox{schwächeren} \glslink{passwort}{Passwörtern} oder Mustern. Eine Änderung sollte nur bei Verdacht auf Kompromittierung erfolgen.
+    \item \textbf{Richtig (Best Practice):} \gls{passphrase}n bieten durch ihre Länge eine hohe \gls{entropie} (über 80 Bit) und sind widerstandsfähiger gegen Angriffe.
+    \item \textbf{Falsch:} \glslink{passwort}{Passwörter} dürfen niemals mehrfach genutzt werden, um \mbox{Folgeschäden} bei Datenlecks zu verhindern.
+    \item \textbf{Richtig (Best Practice):} Ein \gls{passwortmanager} ermöglicht die sichere \mbox{Generierung} und Verwaltung von einzigartigen \glslink{passwort}{Passwörtern} für jeden Dienst.
 \end{enumerate}
 \end{solutionbox}
 
@@ -330,41 +333,41 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
 \subsubsection{Teil 1: Verständnis \& Begriffe}
 
 \begin{taskbox}[{Aufgabe 3.2.1.1: Begriffsdefinitionen \& Abgrenzung}]
-Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen klassischem Phishing und gezieltem Spear-Phishing. Gehen Sie dabei darauf ein, wer jeweils das Ziel des Angriffs ist.
+Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen \gls{klassischesphishing} und gezieltem \gls{spearphishing}. Gehen Sie dabei darauf ein, wer jeweils das Ziel des Angriffs ist.
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.2.1.1]
 \begin{itemize}
-    \item \textbf{Klassisches Phishing:} Richtet sich ungezielt an eine breite Masse von \mbox{Personen} \newline (z.\,B. gefälschte Massen-E-Mails im Namen bekannter Unternehmen).
-    \item \textbf{Spear-Phishing:} Ein hochspezifischer, massgeschneiderter Angriff auf eine einzelne ausgewählte Person oder eine konkrete Mitarbeitergruppe innerhalb einer Organisation.
+    \item \textbf{\gls{klassischesphishing}:} Richtet sich ungezielt an eine breite Masse von \mbox{Personen} \newline (z.\,B. gefälschte Massen-E-Mails im Namen bekannter Unternehmen).
+    \item \textbf{\gls{spearphishing}:} Ein hochspezifischer, massgeschneiderter Angriff auf eine einzelne ausgewählte Person oder eine konkrete Mitarbeitergruppe innerhalb einer Organisation.
 \end{itemize}
 \end{solutionbox}
 
 \begin{taskbox}[{Aufgabe 3.2.1.2: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
 Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsformen die passende Methode zu und erklären Sie kurz, worauf man achten muss:
 \begin{enumerate}[label=\alph*)]
-    \item \textbf{Vishing}
-    \item \textbf{Smishing}
-    \item \textbf{Quishing}
+    \item \textbf{\gls{vishing}}
+    \item \textbf{\gls{smishing}}
+    \item \textbf{\gls{quishing}}
 \end{enumerate}
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.2.1.2]
 \begin{enumerate}[label=\alph*)]
-    \item \textbf{Vishing (Voice Phishing):} Phishing über Telefonanrufe. \newline Beachtung: Seriöse Anrufer verlangen niemals Passwörter oder PINs am \mbox{Telefon.}
-    \item \textbf{Smishing (SMS Phishing):} Betrug über Kurznachrichten (SMS). \newline Beachtung: Keine unüberlegten Klicks auf SMS-Links und keine Preisgabe vertraulicher Daten.
-    \item \textbf{Quishing (QR-Code Phishing):} Platzierung gefälschter QR-Codes. \newline Beachtung: Ziel-URL vor dem Aufrufen im Scanner genau prüfen.
+    \item \textbf{\gls{vishing} (Voice Phishing):} Phishing über Telefonanrufe. \newline Beachtung: Seriöse Anrufer verlangen niemals \glslink{passwort}{Passwörter} oder \gls{pin}s am \mbox{Telefon.}
+    \item \textbf{\gls{smishing} (SMS Phishing):} Betrug über Kurznachrichten (SMS). \newline Beachtung: Keine unüberlegten Klicks auf SMS-Links und keine Preisgabe vertraulicher Daten.
+    \item \textbf{\gls{quishing} (QR-Code Phishing):} Platzierung gefälschter QR-Codes. \newline Beachtung: Ziel-URL vor dem Aufrufen im Scanner genau prüfen.
 \end{enumerate}
 \end{solutionbox}
 
 \newpage
 
-\begin{taskbox}[{Aufgabe 3.2.1.3: Multi-Faktor-Authentisierung (MFA)}]
-Warum ist \gls{mfa} eines der effektivsten Schutzmittel gegen Phishing? \newline Wie schützt \gls{mfa} einen Account, selbst wenn ein Opfer seine Anmeldedaten auf einer gefälschten Phishing-Website eingegeben hat?
+\begin{taskbox}[{Aufgabe 3.2.1.3: MFA}]
+Warum ist \gls{mfa} eines der effektivsten Schutzmittel gegen \gls{phishing}? \newline Wie schützt \gls{mfa} einen Account, selbst wenn ein Opfer seine Anmeldedaten auf einer gefälschten \gls{phishing}-Website eingegeben hat?
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.2.1.3]
-MFA ist extrem effektiv, da Passwörter alleine für eine erfolgreiche Übernahme nicht ausreichen. Selbst wenn ein Opfer sein Passwort auf einer Phishing-Webseite eingibt, scheitert der Angreifer beim Anmeldeversuch, weil die Bestätigung über den zweiten Faktor (z.\,B. Smartphone-App) fehlt.
+\gls{mfa} ist extrem effektiv, da \glslink{passwort}{Passwörter} alleine für eine erfolgreiche Übernahme nicht ausreichen. Selbst wenn ein Opfer sein \gls{passwort} auf einer \gls{phishing}-Webseite eingibt, scheitert der Angreifer beim Anmeldeversuch, weil die Bestätigung über den zweiten Faktor (z.\,B. Smartphone-App) fehlt.
 \end{solutionbox}
 
 \newpage
@@ -372,7 +375,7 @@ MFA ist extrem effektiv, da Passwörter alleine für eine erfolgreiche Übernahm
 \subsubsection{Teil 2: Psychologische Faktoren \& Szenario-Analyse}
 
 \begin{taskbox}[{Aufgabe 3.2.2.1: Psychologische Tricks}]
-Social Engineering nutzt primär menschliche Schwachstellen statt technischer \mbox{Systemlücken}. Nennen Sie drei psychologische Faktoren (z.\,B. Angst), die \mbox{Angreifer} \mbox{gezielt} ausnutzen, und beschreiben Sie kurz, wie diese einen Menschen zu \mbox{unüberlegtem} Handeln verleiten.
+\gls{socialengineering} nutzt primär menschliche Schwachstellen statt technischer \mbox{Systemlücken}. Nennen Sie drei psychologische Faktoren, die \mbox{Angreifer} \mbox{gezielt} \mbox{ausnutzen,} und beschreiben Sie kurz, wie diese einen Menschen zu \mbox{unüberlegtem} \mbox{Handeln} verleiten.
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.2.2.1]
@@ -404,8 +407,8 @@ Klicken Sie hier: \url{http://www.kanton-bank-login-sicherheit.com/verify}
 \begin{taskbox}[{Aufgabe 3.2.2.2: Fallbeispiel – Szenario-Analyse}]
 Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam durch.
 \begin{enumerate}[label=\alph*)]
-    \item Identifizieren Sie mindestens drei Merkmale in dieser Nachricht, die eindeutig auf einen Phishing-Angriff hinweisen.
-    \item Welche Form von Phishing und welcher psychologische Mechanismus liegen hier vor?
+    \item Identifizieren Sie mindestens drei Merkmale in dieser Nachricht, die eindeutig auf einen \gls{phishing}-Angriff hinweisen.
+    \item Welche Form von \gls{phishing} und welcher psychologische Mechanismus liegen hier vor?
 \end{enumerate}
 \end{taskbox}
 
@@ -417,7 +420,7 @@ Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam dur
         \item \textit{Unpersönliche Anrede:} Generische Anrede „Sehr geehrter Kunde“.
         \item \textit{Massiver Zeitdruck und Drohung:} Fristsetzung von 120 Minuten mit \mbox{Androhung} einer dauerhaften Kontosperrung.
     \end{itemize}
-    \item \textbf{Form \& Psychologie:} Es handelt sich um \textbf{klassisches Phishing}. \newline Der psychologische Mechanismus basiert auf Angst und künstlich erzeugtem Zeitdruck.
+    \item \textbf{Form \& Psychologie:} Es handelt sich um \textbf{\gls{klassischesphishing}}. \newline Der psychologische Mechanismus basiert auf Angst und künstlich erzeugtem Zeitdruck.
 \end{enumerate}
 \end{solutionbox}
 
@@ -428,21 +431,21 @@ Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam dur
 \begin{taskbox}[{Aufgabe 3.2.3.1: Richtlinien beurteilen}]
 Beurteilen Sie die folgenden Aussagen. Ist die Aussage \textbf{Richtig} oder \textbf{Falsch}? \newline Begründen Sie Ihre Antwort jeweils kurz in einem bis drei Sätzen.
 
-\textbf{Aussage A:} „Seriöse Banken und Institutionen fordern Kunden gelegentlich per E-Mail auf, ihr Passwort einzugeben, um die Identität bei Sicherheitsupdates zu bestätigen.“
+\textbf{Aussage A:} „Seriöse Banken und Institutionen fordern Kunden gelegentlich per E-Mail auf, ihr \gls{passwort} einzugeben, um die Identität bei Sicherheitsupdates zu bestätigen.“
 
 \textbf{Aussage B:} „Beim Aufruf von Links sollte stets die exakte URL (Internetadresse) geprüft werden, da Angreifer häufig Buchstabendreher oder gefälschte Subdomains (Typosquatting) nutzen.“
 
-\textbf{Aussage C:} „Ein Phishing-Angriff kann nur dann erfolgreich sein, wenn auf einem Computer keine Antiviren-Software installiert ist.“
+\textbf{Aussage C:} „Ein \gls{phishing}-Angriff kann nur dann erfolgreich sein, wenn auf einem Computer keine Antiviren-Software installiert ist.“
 
 \textbf{Aussage D:} „Das Scannen von QR-Codes auf Plakaten oder Parkuhren ist völlig risikofrei, da QR-Codes keine Viren oder Links enthalten können.“
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung 3.2.3.1]
 \begin{itemize}
-    \item \textbf{Aussage A: Falsch.} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach Passwörtern oder PINs.
+    \item \textbf{Aussage A: Falsch.} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach \glslink{passwort}{Passwörtern} oder \gls{pin}s.
     \item \textbf{Aussage B: Richtig.} Angreifer versuchen oft, Opfer durch täuschend \mbox{ähnliche} Domains oder gefälschte Subdomains (Typosquatting) in die Irre zu \mbox{führen.}
-    \item \textbf{Aussage C: Falsch.} Phishing nutzt primär die menschliche Psyche (Social Engineering). Eine Antiviren-Software schützt nicht davor, dass der Nutzer seine Daten selbst auf einer gefälschten Website eingibt.
-    \item \textbf{Aussage D: Falsch.} Beim Quishing werden QR-Codes auf schädliche oder gefälschte Zielseiten verlinkt, was ein erhebliches Sicherheitsrisiko darstellt.
+    \item \textbf{Aussage C: Falsch.} \gls{phishing} nutzt primär die menschliche Psyche (\gls{socialengineering}). Eine Antiviren-Software schützt nicht davor, dass der Nutzer seine Daten selbst auf einer gefälschten Website eingibt.
+    \item \textbf{Aussage D: Falsch.} Beim \gls{quishing} werden QR-Codes auf schädliche oder gefälschte Zielseiten verlinkt, was ein erhebliches Sicherheitsrisiko darstellt.
 \end{itemize}
 \end{solutionbox}
 

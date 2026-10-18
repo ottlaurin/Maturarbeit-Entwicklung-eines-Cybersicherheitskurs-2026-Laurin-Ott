@@ -5,6 +5,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{lmodern}
 \usepackage{docmute}
+\usepackage{titlesec}
 
 % --- CSQUOTES (Vom Biblatex-Paket empfohlen) ---
 \usepackage{csquotes}
@@ -94,10 +95,25 @@
 \input{akronyme.tex}
 \input{glossar.tex}
 
-% --- DEFINITION FÜR SUBSUBSUBSECTION (ABGESICHERT) ---
-\providecommand{\subsubsubsection}[1]{%
-  \vspace{0.8em}\noindent\textbf{#1}\par\vspace{0.4em}%
-}
+% --- NEU: ECHTE SUBSUBSUBSECTION DEFINIEREN ---
+\titleclass{\subsubsubsection}{straight}[\subsubsection]
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+  {0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+% Zähler- & TOC-Tiefe auf Ebene 4 anheben
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% Eintragen & Einrücken im Inhaltsverzeichnis (TOC)
+\makeatletter
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7.0em}{4.1em}}
+\makeatother
 
 \pagestyle{empty} % Keine Seitenzahlen auf dem Titelblatt
 
@@ -141,20 +157,20 @@
 \subsection{Motivation und Relevanz}
 In einer Welt, in der sich viele Aspekte unseres Lebens online abspielen, gehören Cyberangriffe längst zum Alltag. Während Sicherheitssoftware, Firewalls und Verschlüsselungen immer besser werden, haben Hacker eine viel einfachere Schwachstelle für sich entdeckt, nämlich uns Menschen. Denn am Ende nützt das beste Sicherheitssystem nichts, wenn man selbst auf den falschen Link klickt.
 
-Dass Phishing kein theoretisches Problem aus den Nachrichten ist, zeigen die offiziellen Zahlen des Schweizer Bundesamts für Cybersicherheit \cite{bacs2026statistik}. Allein in der Woche 41 des Jahres 2026 wurden in der Schweiz 1'271 Cybervorfälle gemeldet\cite{bacs2026statistik}. Mit 503 Meldungen steht Phishing weit an der Spitze aller Kategorien weit vor allgemeinem Betrug oder Spam\cite{bacs2026statistik}. Schaut man sich den Verlauf an, sieht man einen krassen Anstieg. Anfang 2026 lagen die Zahlen noch bei rund 140 Meldungen pro Woche, im Herbst waren es plötzlich über 500\cite{bacs2026statistik}. 
+Dass \gls{phishing} kein theoretisches Problem aus den Nachrichten ist, zeigen die offiziellen Zahlen des Schweizer Bundesamts für Cybersicherheit \cite{bacs2026statistik}. Allein in der Woche 41 des Jahres 2026 wurden in der Schweiz 1'271 Cybervorfälle gemeldet\cite{bacs2026statistik}. Mit 503 Meldungen steht \gls{phishing} weit an der Spitze aller Kategorien weit vor allgemeinem Betrug oder Spam\cite{bacs2026statistik}. Schaut man sich den Verlauf an, sieht man einen krassen Anstieg. Anfang 2026 lagen die Zahlen noch bei rund 140 Meldungen pro Woche, im Herbst waren es plötzlich über 500\cite{bacs2026statistik}. 
 
-Was die Sache heute so gefährlich macht, ist der rasante Fortschritt von \newline Künstlicher Intelligenz (KI). Früher konnte man Phishing-Mails meistens sofort am schlechten Deutsch, \mbox{komischen} Satzstellungen oder Grammatikfehlern erkennen. \newline Durch moderne KI-Tools schreiben Angreifer heute auf Knopfdruck fehlerfreie, extrem überzeugende Texte. KI macht es Kriminellen viel leichter, Angriffe über alle möglichen Kanäle vollautomatisch zu \mbox{skalieren,} sei es per Mail, Anruf (Voice-Phishing machte in Woche 41 immerhin 94 Fälle aus\cite{bacs2026statistik}) oder Messenger-Diensten.
+Was die Sache heute so gefährlich macht, ist der rasante Fortschritt von \newline \gls{ki}. Früher konnte man \gls{phishing}-Mails meistens sofort am schlechten Deutsch, \mbox{ungewöhnliche} Satzstellungen oder Grammatikfehlern erkennen. \newline Durch moderne \gls{ki}-Tools schreiben Angreifer heute auf Knopfdruck fehlerfreie, extrem überzeugende Texte. \gls{ki} macht es Kriminellen viel leichter, Angriffe über alle möglichen Kanäle vollautomatisch zu \mbox{skalieren,} sei es per Mail, Anruf (\glslink{vishing}{Voice-Phishing} machte in Woche 41 immerhin 94 Fälle aus\cite{bacs2026statistik}) oder Messenger-Diensten.
 
-Wie nah das Thema geht, habe ich selbst erlebt. Als wir Ferien gebucht hatten, \mbox{wurde} ein Partnerunternehmen unseres Reiseanbieters gehackt. Kurz darauf bekam mein \mbox{Vater} eine erschreckend gut gemachte WhatsApp-Nachricht, die zu einer dringenden Bestätigung aufforderte. Das Fiese daran war, alle Daten hatten absolut gestimmt. Von unseren Namen über das Reiseziel bis hin zu den exakten Reisedaten war alles \mbox{korrekt.} Nur wer ganz genau hinschaute, erkannte die Phishing-Falle, nämlich daran, dass die Domain nicht übereinstimmte mit der des Reiseanbieters und ausserdem dass die WhatsApp-Nachricht von einem Business-Account mit brasilianischer Ländervorwahl stammte, obwohl unsere Reise gar nicht nach Brasilien ging. Wenn echte, geleakte Daten mit \mbox{KI-generierten} Texten kombiniert werden, reichen einfache Bauchgefühle als Schutz oft nicht mehr aus.
+Wie nah das Thema geht, habe ich selbst erlebt. Als wir Ferien gebucht hatten, \mbox{wurde} ein Partnerunternehmen unseres Reiseanbieters gehackt. Kurz darauf bekam mein \mbox{Vater} eine erschreckend gut gemachte WhatsApp-Nachricht, die zu einer dringenden Bestätigung aufforderte. Das Gemeine daran war, alle Daten hatten absolut gestimmt. Von unseren Namen über das Reiseziel bis hin zu den exakten Reisedaten war alles \mbox{korrekt.} Nur wer ganz genau hinschaute, erkannte die Phishing-Falle, nämlich daran, dass die Domain nicht übereinstimmte mit der des Reiseanbieters und ausserdem dass die WhatsApp-Nachricht von einem Business-Account mit brasilianischer Ländervorwahl stammte, obwohl unsere Reise gar nicht nach Brasilien ging. Wenn echte, geleakte Daten mit \mbox{\gls{ki}-generierten} Texten kombiniert werden, reichen einfache Bauchgefühle als Schutz oft nicht mehr aus.
 
-Obwohl das Thema uns Jugendliche jeden Tag betrifft, kommt es in der Schule oft zu kurz. Wir nutzen zwar ständig Smartphones und Laptops, wissen aber selten, wie man ein wirklich sicheres Passwort erstellt oder wie man sich vor Phishing-Angriffen schützen kann.
+Obwohl das Thema uns Jugendliche jeden Tag betrifft, kommt es in der Schule oft zu kurz. Wir nutzen zwar ständig Smartphones und Laptops, wissen aber selten, wie man ein wirklich sicheres \gls{passwort} erstellt oder wie man sich vor \gls{phishing}-Angriffen schützen kann.
 
 \newpage
 \subsection{Zielsetzung und Fragestellung}
-Das Ziel dieser Maturitätsarbeit ist es, einen interaktiven und praxisnahen \mbox{Cybersicherheitskurs} für Gymnasialschülerinnen und -schüler zu entwickeln, \newline durchzuführen und zu evaluieren. Statt nur trockene Theorie zu büffeln, erarbeiten sich die Jugendlichen das Thema anhand von Alltagsbeispielen, mathematischen \mbox{Hintergründen,} praktischen Aufgaben sowie einem simulierten Phishing-Szenario auf Moodle. \newline Der Fokus liegt dabei auf zwei Themen, die uns im Alltag besonders betreffen, nämlich \mbox{\textbf{Passwortsicherheit}} und \textbf{Phishing}. \newline Mithilfe eines Pre- und Post-Tests sowie einer anschliessenden Umfrage wird gemessen, ob sich das Fachwissen und das Sicherheitsbewusstsein der Teilnehmenden messbar steigern lassen. Die gewonnenen Ergebnisse fliessen anschliessend in konkrete Empfehlungen für den Informatikunterricht an Gymnasien ein.Dabei geht die Arbeit folgenden Hauptfragen nach:
+Das Ziel dieser Maturitätsarbeit ist es, einen interaktiven und praxisnahen Cyber-\newline Sicherheitskurs für Gymnasialschülerinnen und -schüler zu entwickeln, \newline durchzuführen und zu evaluieren. Statt nur trockene Theorie zu büffeln, erarbeiten sich die Jugendlichen das Thema anhand von Alltagsbeispielen, mathematischen \mbox{Hintergründen,} praktischen Aufgaben sowie einem simulierten Phishing-Szenario auf Moodle. \newline Der Fokus liegt dabei auf zwei Themen, die uns im Alltag besonders betreffen, nämlich \mbox{\textbf{\gls{passwort}-Sicherheit}} und \textbf{\gls{phishing}}. \newline Mithilfe eines Pre- und Post-Tests sowie einer anschliessenden Umfrage wird gemessen, ob sich das Fachwissen und das Sicherheitsbewusstsein der Teilnehmenden messbar steigern lassen. Die gewonnenen Ergebnisse fliessen anschliessend in konkrete Empfehlungen für den Informatikunterricht an Gymnasien ein. Dabei geht die Arbeit folgenden Hauptfragen nach:
 \begin{itemize}
-\item Welche theoretischen und mathematischen Grundlagen (wie die Shannon-Entropie $E = L \cdot \log_2(R)$) werden benötigt, um Schülerinnen und Schülern Passwortstärke und Phishing-Mechanismen verständlich zu erklären?
-\item Wie muss der Kurs praxisnah aufgebaut sein (unter Einbindung von Moodle-Elementen wie dem Phishing-Simulator, einem Entropie-Rechner und interaktiven Aufgaben), um Jugendliche für Cybergefahren zu sensibilisieren und ihnen konkrete Tipps für den Alltag mitzugeben?
+\item Welche theoretischen und mathematischen Grundlagen (wie die Shannon-\gls{entropie} $E = L \cdot \log_2(R)$) werden benötigt, um Schülerinnen und Schülern \gls{passwort}-Stärke und \gls{phishing}-Mechanismen verständlich zu erklären?
+\item Wie muss der Kurs praxisnah aufgebaut sein (unter Einbindung von Moodle-Elementen wie dem \gls{phishing}-Simulator, einem \gls{entropie}-Rechner und interaktiven Aufgaben), um Jugendliche für Cybergefahren zu sensibilisieren und ihnen konkrete Tipps für den Alltag mitzugeben?
 \item Welche Handlungsempfehlungen lassen sich aus der Auswertung der Pre- und Post-Tests für die Verankerung von Cybersicherheit im Gymnasialunterricht ableiten?
 \end{itemize}
 
@@ -163,13 +179,13 @@ Das Ziel dieser Maturitätsarbeit ist es, einen interaktiven und praxisnahen \mb
 \subsection{Aufbau der Arbeit}
 Die vorliegende Arbeit gliedert sich wie folgt:
 \begin{itemize}
-    \item \textbf{\Cref{sec:passwortsicherheit}} behandelt die theoretischen und mathematischen Grundlagen der \newline {Passwortsicherheit.} Neben zentralen Begriffen und typischen Angriffsarten \newline (wie Brute-Force oder Wörterbuchangriffen) wird die Shannon-Entropie \newline ($E = L \cdot \log_2(R)$) sowie aktuelle Best Practices (z.\,B. nach \gls{nist}) erläutert.
-    \item \textbf{\Cref{sec:phishing}} widmet sich dem Thema Phishing und Social Engineering. \newline Es werden verschiedene Angriffsformen (klassisch, Spear-Phishing, Vishing, \mbox{Smishing,} \mbox{Quishing}), psychologische Wirkungsweisen sowie Schutzmassnahmen \mbox{analysiert.}
+    \item \textbf{\Cref{sec:passwortsicherheit}} behandelt die theoretischen und mathematischen Grundlagen der \newline {\gls{passwort}-Sicherheit.} Neben zentralen Begriffen und typischen Angriffsarten \newline (wie Brute-Force oder Wörterbuchangriffen) wird die Shannon-\gls{entropie} \newline ($E = L \cdot \log_2(R)$) sowie aktuelle Best Practices (z.\,B. nach \gls{nist}) erläutert.
+    \item \textbf{\Cref{sec:phishing}} widmet sich dem Thema \gls{phishing} und Social Engineering. \newline Es werden verschiedene Angriffsformen (\glslink{klassischesphishing}{klassisch}, \gls{spearphishing}, \gls{vishing}, \mbox{\gls{smishing},} \mbox{\gls{quishing}}), psychologische Wirkungsweisen sowie Schutzmassnahmen \mbox{analysiert.}
     \item \textbf{\Cref{sec:aufgaben}} beinhaltet praxiserprobte Aufgabenblätter und Fallbeispiele, die direkt im \mbox{Unterricht} eingesetzt werden können.
     \item \textbf{Praktische Tools \& Interaktive Komponenten:} Um das gelernte Wissen \mbox{erlebbar} zu machen, ergänzen zwei selbst entwickelte Web-Tools den Kurs:
     \begin{itemize}
-        \item Ein \textbf{interaktiver Entropie-Rechner}, mit dem Schülerinnen und Schüler die mathematische Stärke von Passwörtern in Bit berechnen und nachvollziehen, wie lange \mbox{verschiedene} Compute-Ressourcen benötigen würden, um durch einen \newline Brute-Force-Angriff geknackt zu werden.
-        \item Ein \textbf{Phishing-Simulator}, bei dem Schülerinnen und Schüler entscheiden \mbox{müssen,} ob eine E-Mail echt oder Phishing ist. Wenn es Phishing ist, müssen sie genau begründen und markieren, an welchen Merkmalen sie den Betrug erkannt haben.
+        \item Ein \textbf{interaktiver \gls{entropie}-Rechner}, mit dem Schülerinnen und Schüler die mathematische Stärke von\glslink{passwort}{Passwörtern} in Bit berechnen und nachvollziehen, wie lange \mbox{verschiedene} Compute-Ressourcen benötigen würden, um durch einen Brute-Force-Angriff geknackt zu werden.
+        \item Ein \textbf{\gls{phishing}-Simulator}, bei dem Schülerinnen und Schüler entscheiden \mbox{müssen,} ob eine E-Mail echt oder \gls{phishing} ist. Bei einer \gls{phishing}-Mail, müssen sie begründen, an welchen Merkmalen sie den Betrug erkannt haben.
     \end{itemize}
 \end{itemize}
 
