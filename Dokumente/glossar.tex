@@ -12,10 +12,11 @@
 
 \newglossaryentry{entropie}{
     name={Entropie},
-    description={Ein Mass aus der Informationstheorie für die Stärke und Zufälligkeit eines \gls{passwort}s.
+    description={Mass für die mathematische Stärke und Zufälligkeit bei der Generierung eines Passworts oder einer Passphrase, angegeben in Bit. Ein Bit beschreibt eine Ja/Nein-Entscheidung zur Halbierung des \gls{suchraum}s bei automatisierten Angriffen. Bei echter Zufallsauswahl berechnet sich die Entropie aus dem \gls{suchraum} $N$:
     \[
-    E = L \cdot \log_2(R)
-    \]}
+    E = \log_2(N)
+    \]
+    Für Zeichen-Passwörter gilt $N = R^L$ (Zeichenvorrat $R$, Länge $L$), für Wort-Passphrasen gilt $N = W^L$ (Wörterbuchgrösse $W$, Länge $L$ in Wörtern).}
 }
 
 \newglossaryentry{bruteforce}{
@@ -86,4 +87,9 @@
 \newglossaryentry{pin}{
     name={PIN},
     description={Eine persönliche Identifikationsnummer, oft verwendet zur Authentifizierung von Nutzern.}
+}
+
+\newglossaryentry{suchraum}{
+    name={Suchraum},
+    description={Der gesamte mögliche Suchraum für ein \gls{passwort} oder einer \gls{passphrase}, bestehend aus allen möglichen (Zeichen)-Kombinationen.}
 }
