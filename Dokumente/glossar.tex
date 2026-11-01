@@ -12,7 +12,7 @@
 
 \newglossaryentry{entropie}{
     name={Entropie},
-    description={Mass für die mathematische Stärke und Zufälligkeit bei der Generierung eines Passworts oder einer Passphrase, angegeben in Bit. Ein Bit beschreibt eine Ja/Nein-Entscheidung zur Halbierung des \gls{suchraum}s bei automatisierten Angriffen. Bei echter Zufallsauswahl berechnet sich die Entropie aus dem \gls{suchraum} $N$:
+    description={Mass für die mathematische Stärke und die Unsicherheit des Erzeugungsverfahrens bei der Generierung eines \gls{passwort}s in \gls{bit}. Die Berechnungsformel setzt eine rein zufällige und unabhängige Auswahl voraus; bei manuell gewählten \glslink{passwort}{Passwörtern} überschätzt sie die tatsächliche Stärke. Entropie aus dem \gls{suchraum} $N$:
     \[
     E = \log_2(N)
     \]
@@ -92,4 +92,14 @@
 \newglossaryentry{suchraum}{
     name={Suchraum},
     description={Der gesamte mögliche Suchraum für ein \gls{passwort} oder einer \gls{passphrase}, bestehend aus allen möglichen (Zeichen)-Kombinationen.}
+}
+
+\newglossaryentry{bit}{
+    name={Bit},
+    description={Ein Bit ist die kleinste Einheit digitaler Information, die zwei Zustände (0 oder 1 / an oder aus) darstellen kann.}
+}
+
+\newglossaryentry{livephishing}{
+    name={Live-Phishing},
+    description={Beim Live-Phishing schalten Kriminelle eine gefälschte Website dazwischen, um Passwort und Einmalcode (MFA) in Echtzeit abzufangen und sich sofort auf der echten Seite einzuloggen.}
 }
