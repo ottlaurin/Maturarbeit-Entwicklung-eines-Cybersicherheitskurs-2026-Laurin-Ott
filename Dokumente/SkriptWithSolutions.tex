@@ -261,12 +261,16 @@ Was bedeutet die Abkürzung \gls{mfa} und wie schützt sie einen Account, selbst
 \end{solutionbox}
 
 \newpage
-
 \subsubsection{Teil 2: Mathematische Berechnungen (Entropie)}
 
-Verwenden Sie die Formel zur Berechnung der \gls{entropie} aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}):
+Verwenden Sie diese Formeln zur Berechnung der \gls{entropie} aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}).
+Für \glslink{passwort}{Passwörter} gilt:
 \[
 E = L \cdot \log_2(R)
+\]
+Für \gls{passphrase}n gilt:
+\[
+E = L \cdot \log_2(W)
 \]
 
 \begin{taskbox}[{Aufgabe 3: Einfluss des Zeichensatzes ($R$)}]
@@ -284,7 +288,24 @@ Gegeben ist ein \gls{passwort} der Länge $L = 10$.
 \end{enumerate}
 \end{solutionbox}
 
-\begin{taskbox}[{Aufgabe 4: Länge vs. Komplexität}]
+\begin{taskbox}[{Aufgabe 4: Einfluss der Länge ($L$) bei \gls{passphrase}n}]
+Gegeben ist eine \gls{passphrase} mit der Wörterlistengrösse $W = 7776$.
+\begin{enumerate}[label=\alph*)]
+    \item Berechnen Sie die \gls{entropie} $E$, für ein Wort ($L = 1$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn nur 5 Wörter verwendet werden \newline($L = 5$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn 7 Wörter verwendet werden ($L = 7$).
+\end{enumerate}
+\end{taskbox}
+
+\begin{solutionbox}[Musterlösung Aufgabe 4]
+\begin{enumerate}[label=\alph*)]
+    \item $E = 1 \cdot \log_2(7776) \approx 1 \cdot 12{,}93 = 12{,}93 \text{ Bit}$
+    \item $E = 5 \cdot \log_2(7776) \approx 5 \cdot 12{,}93 = 64{,}65 \text{ Bit}$
+    \item $E = 7 \cdot \log_2(7776) \approx 7 \cdot 12{,}93 = 90{,}51 \text{ Bit}$
+\end{enumerate}
+\end{solutionbox}
+
+\begin{taskbox}[{Aufgabe 5: Länge vs. Komplexität}]
 Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 \begin{itemize}
     \item \textbf{Szenario A:} Ein komplexes \gls{passwort} mit 8 Zeichen ($L = 8$), \newline das \mbox{Kleinbuchstaben}, \mbox{Grossbuchstaben}, \mbox{Zahlen} und \mbox{Sonderzeichen} nutzt \newline($R = 94$).
@@ -293,7 +314,7 @@ Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 \textbf{Aufgabe:} Berechnen Sie für beide Szenarien die \gls{entropie} $E$. Welches \gls{passwort} bietet eine höhere \gls{entropie} und warum entspricht dies der Regel „Länge vor \mbox{Komplexität}“?
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 4]
+\begin{solutionbox}[Musterlösung Aufgabe 5]
 \begin{itemize}
     \item \textbf{Szenario A ($L=8, R=94$):} $E_A = 8 \cdot \log_2(94) \approx 52{,}4 \text{ Bit}$
     \item \textbf{Szenario B ($L=20, R=26$):} $E_B = 20 \cdot \log_2(26) \approx 94{,}0 \text{ Bit}$
@@ -301,11 +322,9 @@ Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 \textbf{Auswertung \& Begründung:} Szenario B bietet eine deutlich höhere \gls{entropie} ($94{,}0 \text{ Bit}$) als Szenario A ($52{,}4 \text{ Bit}$). Die Entropie ($E = L \cdot \log_2(R)$) wächst linear mit der Länge ($L$), aber nur logarithmisch mit dem Zeichensatz ($R$). Eine Erhöhung der Länge führt daher zu einem wesentlich steileren Entropiegewinn als das Vergrössern des Zeichensatzes. Dies entspricht der Regel „Länge vor \mbox{Komplexität}“.
 \end{solutionbox}
 
-\newpage
-
 \subsubsection{Teil 3: Anwendung \& Best Practices}
 
-\begin{taskbox}[{Aufgabe 5: Richtlinien beurteilen}]
+\begin{taskbox}[{Aufgabe 6: Richtlinien beurteilen}]
 Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(z.\,B. nach \gls{nist})? Begründen Sie Ihre Antwort kurz.
 \begin{enumerate}[label=\Alph*)]
     \item „Ein sicheres \gls{passwort} muss alle 30 Tage geändert werden.“
@@ -315,7 +334,7 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
 \end{enumerate}
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 5]
+\begin{solutionbox}[Musterlösung Aufgabe 6]
 \begin{enumerate}[label=\Alph*)]
     \item \textbf{Falsch:} Regelmässige erzwungene Änderungen verleiten Nutzer zu \mbox{schwächeren} \glslink{passwort}{Passwörtern} oder Mustern. Eine Änderung sollte nur bei Verdacht auf Kompromittierung erfolgen.
     \item \textbf{Richtig (Best Practice):} \gls{passphrase}n bieten durch ihre Länge eine hohe \gls{entropie} (über 80 Bit) und sind widerstandsfähiger gegen Angriffe.
@@ -331,18 +350,18 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
 
 \subsubsection{Teil 1: Verständnis \& Begriffe}
 
-\begin{taskbox}[{Aufgabe 6: Begriffsdefinitionen \& Abgrenzung}]
+\begin{taskbox}[{Aufgabe 7: Begriffsdefinitionen \& Abgrenzung}]
 Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen \gls{klassischesphishing} und gezieltem \gls{spearphishing}. Gehen Sie dabei darauf ein, wer jeweils das Ziel des Angriffs ist.
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 6]
+\begin{solutionbox}[Musterlösung Aufgabe 7]
 \begin{itemize}
     \item \textbf{\gls{klassischesphishing}:} Richtet sich ungezielt an eine breite Masse von \mbox{Personen} \newline (z.\,B. gefälschte Massen-E-Mails im Namen bekannter Unternehmen).
     \item \textbf{\gls{spearphishing}:} Ein hochspezifischer, massgeschneiderter Angriff auf eine einzelne ausgewählte Person oder eine konkrete Mitarbeitergruppe innerhalb einer Organisation.
 \end{itemize}
 \end{solutionbox}
 
-\begin{taskbox}[{Aufgabe 7: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
+\begin{taskbox}[{Aufgabe 8: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
 Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsformen die passende Methode zu und erklären Sie kurz, worauf man achten muss:
 \begin{enumerate}[label=\alph*)]
     \item \textbf{\gls{vishing}}
@@ -351,7 +370,7 @@ Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsforme
 \end{enumerate}
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 7]
+\begin{solutionbox}[Musterlösung Aufgabe 8]
 \begin{enumerate}[label=\alph*)]
     \item \textbf{\gls{vishing} (Voice Phishing):} Phishing über Telefonanrufe. \newline Beachtung: Seriöse Anrufer verlangen niemals \glslink{passwort}{Passwörter} oder \gls{pin}s am \mbox{Telefon.}
     \item \textbf{\gls{smishing} (SMS Phishing):} Betrug über Kurznachrichten (SMS). \newline Beachtung: Keine unüberlegten Klicks auf SMS-Links und keine Preisgabe vertraulicher Daten.
@@ -361,29 +380,30 @@ Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsforme
 
 \newpage
 
-\begin{taskbox}[{Aufgabe 8: MFA}]
+\begin{taskbox}[{Aufgabe 9: MFA}]
 Warum ist \gls{mfa} eines der effektivsten Schutzmittel gegen \gls{phishing}? \newline Wie schützt \gls{mfa} einen Account, selbst wenn ein Opfer seine Anmeldedaten auf einer gefälschten \gls{phishing}-Website eingegeben hat?
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 8]
+\begin{solutionbox}[Musterlösung Aufgabe 9]
 \gls{mfa} ist extrem effektiv, da \glslink{passwort}{Passwörter} alleine für eine erfolgreiche Übernahme meist nicht ausreichen. Selbst wenn ein Opfer sein \gls{passwort} auf einer \gls{phishing}-Webseite eingibt, wird der Angriff bei Standard-MFA deutlich erschwert, da der zweite Faktor (z.\,B. Einmalcode oder App-Bestätigung) fehlt. 
 \end{solutionbox}
 
-\newpage
 
 \subsubsection{Teil 2: Psychologische Faktoren \& Szenario-Analyse}
 
-\begin{taskbox}[{Aufgabe 9: Psychologische Tricks}]
+\begin{taskbox}[{Aufgabe 10: Psychologische Tricks}]
 \gls{socialengineering} nutzt primär menschliche Schwachstellen statt technischer \mbox{Systemlücken}. Nennen Sie drei psychologische Faktoren, die \mbox{Angreifer} \mbox{gezielt} \mbox{ausnutzen,} und beschreiben Sie kurz, wie diese einen Menschen zu \mbox{unüberlegtem} \mbox{Handeln} verleiten.
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 9]
+\begin{solutionbox}[Musterlösung Aufgabe 10]
 \begin{enumerate}
     \item \textbf{Angst:} Drohungen wie Kontosperrungen erzeugen Panik, sodass Logik und Vorsicht ausgeschaltet werden.
     \item \textbf{Zeitdruck / Dringlichkeit:} Kurze Fristen verleiten dazu, übereilt und \mbox{unüberlegt} zu handeln.
     \item \textbf{Neugier / Gier:} Versprechen von Gewinnen oder exklusiven Informationen verleiten zum unkritischen Klicken auf Links.
 \end{enumerate}
 \end{solutionbox}
+
+\newpage
 
 In \cref{fig:phishing_email} ist eine typische verdächtige Nachricht für die nachfolgende \newline Szenario-Analyse dargestellt.
 
@@ -401,9 +421,8 @@ Klicken Sie hier: \url{http://www.kanton-bank-login-sicherheit.com/verify}
 \label{fig:phishing_email}
 \end{figure}
 
-\newpage
 
-\begin{taskbox}[{Aufgabe 10: Fallbeispiel – Szenario-Analyse}]
+\begin{taskbox}[{Aufgabe 11: Fallbeispiel – Szenario-Analyse}]
 Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam durch.
 \begin{enumerate}[label=\alph*)]
     \item Identifizieren Sie mindestens drei Merkmale in dieser Nachricht, die eindeutig auf einen \gls{phishing}-Angriff hinweisen.
@@ -411,7 +430,7 @@ Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam dur
 \end{enumerate}
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 10]
+\begin{solutionbox}[Musterlösung Aufgabe 11]
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Drei Verdachtsmerkmale:}
     \begin{itemize}
@@ -427,7 +446,7 @@ Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam dur
 
 \subsubsection{Teil 3: Anwendung \& Best Practices (Richtlinien beurteilen)}
 
-\begin{taskbox}[{Aufgabe 11: Richtlinien beurteilen}]
+\begin{taskbox}[{Aufgabe 12: Richtlinien beurteilen}]
 Beurteilen Sie die folgenden Aussagen. Ist die Aussage \textbf{Richtig} oder \textbf{Falsch}? \newline Begründen Sie Ihre Antwort jeweils kurz in einem bis drei Sätzen.
 
 \textbf{Aussage A:} „Seriöse Banken und Institutionen fordern Kunden gelegentlich per E-Mail auf, ihr \gls{passwort} einzugeben, um die Identität bei Sicherheitsupdates zu bestätigen.“
@@ -439,7 +458,7 @@ Beurteilen Sie die folgenden Aussagen. Ist die Aussage \textbf{Richtig} oder \te
 \textbf{Aussage D:} „Das Scannen von QR-Codes auf Plakaten oder Parkuhren ist völlig risikofrei, da QR-Codes keine Viren oder Links enthalten können.“
 \end{taskbox}
 
-\begin{solutionbox}[Musterlösung Aufgabe 11]
+\begin{solutionbox}[Musterlösung Aufgabe 12]
 \begin{itemize}
     \item \textbf{Aussage A: Falsch.} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach \glslink{passwort}{Passwörtern} oder \gls{pin}s.
     \item \textbf{Aussage B: Richtig.} Angreifer versuchen oft, Opfer durch täuschend \mbox{ähnliche} Domains oder gefälschte Subdomains (\gls{typosquatting}) in die Irre zu \mbox{führen.}

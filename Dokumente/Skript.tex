@@ -241,9 +241,14 @@ Was bedeutet die Abkürzung \gls{mfa} und wie schützt sie einen Account, selbst
 
 \subsubsection{Teil 2: Mathematische Berechnungen (Entropie)}
 
-Verwenden Sie die Formel zur Berechnung der \gls{entropie} aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}):
+Verwenden Sie diese Formeln zur Berechnung der \gls{entropie} aus \cref{subsec:entropie} \newline(sehen Sie auch \cref{tab:entropie_vergleich}).
+Für \glslink{passwort}{Passwörter} gilt:
 \[
 E = L \cdot \log_2(R)
+\]
+Für \glslink{passphrase}{Passphrasen} gilt:
+\[
+E = L \cdot \log_2(W)
 \]
 
 \begin{taskbox}[{Aufgabe 3: Einfluss des Zeichensatzes ($R$)}]
@@ -254,7 +259,16 @@ Gegeben ist ein \gls{passwort} der Länge $L = 10$.
 \end{enumerate}
 \end{taskbox}
 
-\begin{taskbox}[{Aufgabe 4: Länge vs. Komplexität}]
+\begin{taskbox}[{Aufgabe 4: Einfluss der Länge ($L$) bei \gls{passphrase}n}]
+Gegeben ist eine \gls{passphrase} mit der Wörterlistengrösse $W = 7776$.
+\begin{enumerate}[label=\alph*)]
+    \item Berechnen Sie die \gls{entropie} $E$, für ein Wort ($L = 1$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn nur 5 Wörter verwendet werden \newline($L = 5$).
+    \item Berechnen Sie die \gls{entropie} $E$, wenn 7 Wörter verwendet werden ($L = 7$).
+\end{enumerate}
+\end{taskbox}
+
+\begin{taskbox}[{Aufgabe 5: Länge vs. Komplexität}]
 Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 \begin{itemize}
     \item \textbf{Szenario A:} Ein komplexes \gls{passwort} mit 8 Zeichen ($L = 8$), \newline das \mbox{Kleinbuchstaben}, \mbox{Grossbuchstaben}, \mbox{Zahlen} und \mbox{Sonderzeichen} nutzt \newline($R = 94$).
@@ -265,7 +279,7 @@ Betrachten Sie die folgenden beiden \glslink{passwort}{Passwörter}:
 
 \subsubsection{Teil 3: Anwendung \& Best Practices}
 
-\begin{taskbox}[{Aufgabe 5: Richtlinien beurteilen}]
+\begin{taskbox}[{Aufgabe 6: Richtlinien beurteilen}]
 Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(z.\,B. nach \gls{nist})? Begründen Sie Ihre Antwort kurz.
 \begin{enumerate}[label=\Alph*)]
     \item „Ein sicheres \gls{passwort} muss alle 30 Tage geändert werden.“
@@ -281,11 +295,11 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
 
 \subsubsection{Teil 1: Verständnis \& Begriffe}
 
-\begin{taskbox}[{Aufgabe 6: Begriffsdefinitionen \& Abgrenzung}]
+\begin{taskbox}[{Aufgabe 7: Begriffsdefinitionen \& Abgrenzung}]
 Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen \gls{klassischesphishing} und gezieltem \gls{spearphishing}. Gehen Sie dabei darauf ein, wer jeweils das Ziel des Angriffs ist.
 \end{taskbox}
 
-\begin{taskbox}[{Aufgabe 7: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
+\begin{taskbox}[{Aufgabe 8: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
 Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsformen die passende Methode zu und erklären Sie kurz, worauf man achten muss:
 \begin{enumerate}[label=\alph*)]
     \item \textbf{\gls{vishing}}
@@ -294,16 +308,17 @@ Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsforme
 \end{enumerate}
 \end{taskbox}
 
-\begin{taskbox}[{Aufgabe 8: MFA}]
+\begin{taskbox}[{Aufgabe 9: MFA}]
 Warum ist \gls{mfa} eines der effektivsten Schutzmittel gegen \gls{phishing}? \newline Wie schützt \gls{mfa} einen Account, selbst wenn ein Opfer seine Anmeldedaten auf einer gefälschten \gls{phishing}-Website eingegeben hat?
 \end{taskbox}
 
-\newpage
 \subsubsection{Teil 2: Psychologische Faktoren \& Szenario-Analyse}
 
-\begin{taskbox}[{Aufgabe 9: Psychologische Tricks}]
+\begin{taskbox}[{Aufgabe 10: Psychologische Tricks}]
 Social Engineering nutzt primär menschliche Schwachstellen statt technischer \mbox{Systemlücken}. Nennen Sie drei psychologische Faktoren, die \mbox{Angreifer} \mbox{gezielt} \mbox{ausnutzen,} und beschreiben Sie kurz, wie diese einen Menschen zu \mbox{unüberlegtem} \mbox{Handeln} verleiten.
 \end{taskbox}
+
+\newpage
 
 In \cref{fig:phishing_email} ist eine typische verdächtige Nachricht für die nachfolgende \newline Szenario-Analyse dargestellt.
 
@@ -321,7 +336,7 @@ Klicken Sie hier: \url{http://www.kanton-bank-login-sicherheit.com/verify}
 \label{fig:phishing_email}
 \end{figure}
 
-\begin{taskbox}[{Aufgabe 10: Fallbeispiel – Szenario-Analyse}]
+\begin{taskbox}[{Aufgabe 11: Fallbeispiel – Szenario-Analyse}]
 Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam durch.
 \begin{enumerate}[label=\alph*)]
     \item Identifizieren Sie mindestens drei Merkmale in dieser Nachricht, die eindeutig auf einen \gls{phishing}-Angriff hinweisen.
@@ -331,7 +346,7 @@ Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam dur
 
 \subsubsection{Teil 3: Anwendung \& Best Practices (Richtlinien beurteilen)}
 
-\begin{taskbox}[{Aufgabe 11: Richtlinien beurteilen}]
+\begin{taskbox}[{Aufgabe 12: Richtlinien beurteilen}]
 Beurteilen Sie die folgenden Aussagen. Ist die Aussage \textbf{Richtig} oder \textbf{Falsch}? \newline Begründen Sie Ihre Antwort jeweils kurz in einem bis drei Sätzen.
 
 \textbf{Aussage A:} „Seriöse Banken und Institutionen fordern Kunden gelegentlich per E-Mail auf, ihr \gls{passwort} einzugeben, um die Identität bei Sicherheitsupdates zu bestätigen.“
