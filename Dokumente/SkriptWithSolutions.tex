@@ -130,7 +130,7 @@
 In fast allen IT-Systemen bilden \glslink{passwort}{Passwörter} die erste Hürde gegen unbefugten Zugriff. In der Praxis zeigt sich jedoch immer wieder, dass schwache, kompromittierte oder mehrfach genutzte \glslink{passwort}{Passwörter} eine der grössten Sicherheitslücken darstellen. Dieses Skript gibt einen Überblick über die mathematischen Grundlagen der \gls{passwort}-Stärke und fasst die aktuellen Empfehlungen zur Absicherung digitaler Identitäten zusammen \cite{nist2025}.
 
 \subsection{Grundlegende Begriffe und Angriffsarten}
-In der Authentisierung und \gls{passwort}-Sicherheit spielen verschiedene Konzepte und Bedrohungen eine entscheidende Rolle. Neben dem rein mathematischen \gls{bruteforce} nutzen Angreifer in der Praxis sehr häufig einen \gls{dictionaryattack}, bei dem gezielt Listen mit geläufigen Wörtern, Namen und bekannten Daten \mbox{durchprobiert} werden. Um diesen \mbox{Methoden} zu entgehen, ist eine hohe \gls{entropie} entscheidend. \\ Zusätzlich erhöht moderne \gls{mfa} (z. B. eine Bestätigung direkt auf dem Smartphone) die Sicherheit deutlich, da ein Passwort allein meist nicht mehr ausreicht.
+In der Authentisierung und \gls{passwort}-Sicherheit spielen verschiedene Konzepte und Bedrohungen eine entscheidende Rolle. Neben dem rein mathematischen \gls{bruteforce} nutzen Angreifer in der Praxis sehr häufig einen \glslink{dictionaryattack}{Wörterbuchangriff}, bei dem gezielt Listen mit geläufigen Wörtern, Namen und bekannten Daten \mbox{durchprobiert} werden. Um diesen \mbox{Methoden} zu entgehen, ist eine hohe \gls{entropie} entscheidend. \\ Zusätzlich erhöht moderne \gls{mfa} (z. B. eine Bestätigung direkt auf dem Smartphone) die Sicherheit deutlich, da ein Passwort allein meist nicht mehr ausreicht.
 
 \subsection{Mathematische Grundlage: Die Passwort-Entropie}
 \label{subsec:entropie}
@@ -147,7 +147,7 @@ $$E = \log_2(N) = \log_2(W^L) = L \cdot \log_2(W)$$
     \item $R$: Die Grösse des verfügbaren Zeichensatzes (z.\,B. Kleinbuchstaben, \\ Grossbuchstaben, Zahlen, Sonderzeichen).
     \item $W$: Die Anzahl der Wörter in dem Wörterbuch.
 \end{itemize}
-Wichtig ist, dass diese Formel echte Zufallsauswahl voraus setzt. Selbst gewählte \\ \glslink{passwort}{Passwörter} (wie z. B. Sommer2026!) besitzen eine deutlich geringere \gls{entropie}, da \\ menschliche Eingaben meist vorhersehbaren Mustern folgen und dadurch der tatsächliche \gls{suchraum} für Angreifer stark schrumpft. Das Gleiche gilt für \gls{passphrase}n, \gls{passphrase}n sind mehrere zufällige Wörter, die zu einer langen Wörterkette kombiniert werden.
+Wichtig ist, dass diese Formel echte Zufallsauswahl voraus setzt. Selbst gewählte \\ \glslink{passwort}{Passwörter} (wie z. B. Sommer2026!) besitzen eine deutlich geringere \gls{entropie}, da \\ menschliche Eingaben meist vorhersehbaren Mustern folgen und dadurch der tatsächliche \gls{suchraum} für Angreifer stark schrumpft. Das Gleiche gilt für \gls{passphrase}n. \gls{passphrase}n sind mehrere zufällige Wörter, die zu einer langen Wörterkette kombiniert werden.
 \subsubsection{Beispielrechnung}
 \begin{itemize}
     \item \textbf{8 Zeichen (nur Kleinbuchstaben):} Bei $L = 8$ und einem Zeichensatz von $R = 26$ ergibt sich eine \gls{entropie} von:
@@ -232,7 +232,7 @@ Um sich vor \gls{phishing}-Angriffen zu schützen, gelten im Rahmen der IT-Siche
     \item \textbf{\gls{mfa} nutzen:} \gls{mfa} ist extrem effektiv, da \glslink{passwort}{Passwörter} alleine für eine Übernahme meist nicht ausreichen. Selbst wenn ein Opfer sein \gls{passwort} auf einer \gls{phishing}-Webseite eingibt, wird der Zugriff erschwert, da der zweite Faktor fehlt. Standard-\gls{mfa} bietet jedoch keinen absoluten Schutz vor \gls{livephishing}. \cite{cisaphishingpostcard}
     \item \textbf{Keine sensiblen Daten preisgeben:} Seriöse Institutionen fragen niemals per E-Mail, SMS oder Telefon nach \glslink{passwort}{Passwörtern} oder \gls{pin}s. \cite{bacsphishing}
     \item \textbf{Dringlichkeit und Druckmittel hinterfragen:} E-Mails, die mit \mbox{unbegründeten} Drohungen (z.~B. sofortige Kontosperrung) oder kurzen Fristen Panik erzeugen \mbox{wollen}, kritisch prüfen. \cite{cisaphishingpostcard}
-    \item \textbf{Sprache und Anrede analysieren:} Unpersönliche Anreden (z.~B. „Sehr \mbox{geehrter} Kunde“) sowie grammatikalische Fehler, Rechtschreibfehler, fehlende Umlaute oder auffällige Formulierungen bleiben wichtige Warnsignale für Phishing-Mails. Durch den Einsatz moderner KI-Tools sind Angreifer jedoch zunehmend in der Lage, sprachlich einwandfreie Nachrichten zu erstellen. Daher gilt, das Fehlen von Sprachfehlern kein Garantiebeweis ist für die Echtheit einer Nachricht. \cite{cisaphishingpostcard}
+    \item \textbf{Sprache und Anrede analysieren:} Unpersönliche Anreden (z.~B. „Sehr \mbox{geehrter} Kunde“) sowie grammatikalische Fehler, Rechtschreibfehler, fehlende Umlaute oder auffällige Formulierungen bleiben wichtige Warnsignale für Phishing-Mails. Durch den Einsatz moderner KI-Tools sind Angreifer jedoch zunehmend in der Lage, sprachlich einwandfreie Nachrichten zu erstellen. Daher gilt, das Fehlen von Sprachfehlern kein Garantiebeweis für die Echtheit einer Nachricht ist. \cite{cisaphishingpostcard}
     \item \textbf{Direktzugriffe bevorzugen:} Webseiten und Portale stets manuell über die \mbox{Eingabe} der bekannten Adresse im Browser aufrufen, anstatt Links aus E-Mails zu folgen. \cite{cisaphishingpostcard}\cite{bacsphishing}
 \end{enumerate}
 
@@ -264,7 +264,7 @@ Was bedeutet die Abkürzung \gls{mfa} und wie schützt sie einen Account, selbst
 \end{taskbox}
 
 \begin{solutionbox}[Musterlösung Aufgabe 2]
-\textbf{MFA} steht für \textbf{Multi-Faktor-Authentisierung}. Sie schützt einen Account, indem neben dem \gls{passwort} ein zweiter Faktor (z.\,B. eine Bestätigung auf dem Smartphone) erforderlich ist. Selbst wenn ein Angreifer das \gls{passwort} erlangt hat, wird der Zugriff mit diesen zweiten Faktor erschwert.
+\textbf{MFA} steht für \textbf{Multi-Faktor-Authentisierung}. Sie schützt einen Account, indem neben dem \gls{passwort} ein zweiter Faktor (z.\,B. eine Bestätigung auf dem Smartphone) erforderlich ist. Selbst wenn ein Angreifer das \gls{passwort} erlangt hat, wird der Zugriff mit diesem zweiten Faktor erschwert.
 \end{solutionbox}
 
 \newpage
@@ -337,7 +337,7 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
     \item „Ein sicheres \gls{passwort} muss alle 30 Tage geändert werden.“
     \item „\gls{passphrase}n aus mehreren zufälligen Wörtern sind in der Regel sicherer und merkbarer als kurze, komplexe Zeichenketten.“
     \item „Verwenden Sie das gleiche \gls{passwort} für mehrere Dienste, solange es sehr lang ist.“
-    \item „Der Einsatz eines \gls{passwortmanager} wird empfohlen, um für jeden Dienst ein unikat zufälliges \gls{passwort} zu generieren.“
+    \item „Der Einsatz eines \gls{passwortmanager} wird empfohlen, um für jeden Dienst ein einzigartiges, zufälliges \gls{passwort} zu generieren.“
 \end{enumerate}
 \end{taskbox}
 
