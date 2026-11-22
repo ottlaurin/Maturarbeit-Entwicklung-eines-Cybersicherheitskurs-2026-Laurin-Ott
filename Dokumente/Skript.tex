@@ -300,69 +300,65 @@ Welche der folgenden Aussagen entsprechen den aktuellen Best Practices \newline(
 \subsection{Aufgabenblatt 2: Phishing, Social Engineering \& \newline Best Practices}
 \label{subsec:aufgaben_phishing}
 
-\subsubsection{Teil 1: Verständnis \& Begriffe}
+\subsubsection{Teil 1: Psychologische Tricks \& Szenario-Analyse}
 
-\begin{taskbox}[{Aufgabe 7: Begriffsdefinitionen \& Abgrenzung}]
-Erklären Sie kurz in Ihren eigenen Worten den Unterschied zwischen \gls{klassischesphishing} und gezieltem \gls{spearphishing}. Gehen Sie dabei darauf ein, wer jeweils das Ziel des Angriffs ist.
-\end{taskbox}
-
-\begin{taskbox}[{Aufgabe 8: Gefahrenkanäle (Vishing, Smishing \& Quishing)}]
-Cyberkriminelle nutzen nicht nur E-Mails. Ordnen Sie den folgenden Angriffsformen die passende Methode zu und erklären Sie kurz, worauf man achten muss:
+\begin{taskbox}[{Aufgabe 7: URL-Detektiv – Welcher Link ist echt?}]
+Sie erhalten verschiedene Nachrichten mit Links. Entscheiden Sie für jede URL, ob sie tatsächlich zur offiziellen Schweizer Website gehört oder ob es sich um einen Phishing-Link handelt. Begründen Sie Ihre Antwort jeweils anhand der Domain-Struktur:
 \begin{enumerate}[label=\alph*)]
-    \item \textbf{\gls{vishing}}
-    \item \textbf{\gls{smishing}}
-    \item \textbf{\gls{quishing}}
+    \item \url{https://www.sbb.ch.ticket-rueckerstattung.com/login}
+    \item \url{https://swisspass.ch/de/login}
+    \item \url{https://login.microsoftonline.com/common/oauth2}
+    \item \url{https://www.galaxus-kundenservice.ch/paket-status}
 \end{enumerate}
 \end{taskbox}
 
-\begin{taskbox}[{Aufgabe 9: MFA}]
-Warum ist \gls{mfa} eines der effektivsten Schutzmittel gegen \gls{phishing}? \newline Wie schützt \gls{mfa} einen Account, selbst wenn ein Opfer seine Anmeldedaten auf einer gefälschten \gls{phishing}-Website eingegeben hat?
-\end{taskbox}
-
-\subsubsection{Teil 2: Psychologische Faktoren \& Szenario-Analyse}
-
-\begin{taskbox}[{Aufgabe 10: Psychologische Tricks}]
-Social Engineering nutzt primär menschliche Schwachstellen statt technischer \mbox{Systemlücken}. Nennen Sie drei psychologische Faktoren, die \mbox{Angreifer} \mbox{gezielt} \mbox{ausnutzen,} und beschreiben Sie kurz, wie diese einen Menschen zu \mbox{unüberlegtem} \mbox{Handeln} verleiten.
+\begin{taskbox}[{Aufgabe 8: Psychologische Hebel in der Praxis erkennen}]
+Angreifer nutzen gezielt psychologische Schwachstellen aus, um kritisches Denken auszuschalten. Ordnen Sie den folgenden vier realitätsnahen Nachrichten jeweils den primären psychologischen Hebel zu und erklären Sie kurz, warum die Formulierung bei den Opfern zu unüberlegtem Handeln führt:
+\begin{enumerate}[label=\alph*)]
+    \item \textit{Hallo, hier ist Herr Meier vom Sekretariat. Könnten Sie mir kurz helfen und die angehängte Schülerliste für die Schulleitung gegenprüfen? Danke für Ihre Unterstützung!}
+    \item \textit{Letzte Mahnung: Ihre TWINT-Zahlung über CHF 149.90 konnte nicht abgebucht werden. Begleichen Sie den Betrag bis heute 18:00 Uhr, sonst wird ein Betreibungsverfahren eingeleitet.}
+    \item \textit{Du glaubst nicht, wer dich auf diesem Partyfoto markiert hat! Schau es dir hier an, bevor es gelöscht wird: [Link]}
+    \item \textit{Herzlichen Glückwunsch! Ihre Handynummer wurde bei der SBB-Jubiläumsverlosung für ein Generalabonnement (1. Klasse) gezogen. Jetzt Daten bestätigen!}
+\end{enumerate}
 \end{taskbox}
 
 \newpage
-
-In \cref{fig:phishing_email} ist eine typische verdächtige Nachricht für die nachfolgende \newline Szenario-Analyse dargestellt.
-
-\begin{figure}[H]
-\centering
-\begin{emailbox}[Phishing-E-Mail-Verdachtsfall]
-\textbf{Von:} \texttt{support-service@bank-security-check.ch} \\
-\textbf{An:} \texttt{max.muster@kanti.ch} \\
-\textbf{Betreff:} \textbf{DRINGEND: Ihr Konto wird in 2 Stunden gesperrt!} \\[0.5em]
-Sehr geehrter Kunde, \\[0.5em]
-aufgrund verdächtiger Aktivitäten müssen Sie Ihre Daten sofort verifizieren. \newline Wenn Sie nicht innerhalb von 120 Minuten handeln, wird Ihr Zugang dauerhaft gesperrt. \\[0.5em]
-Klicken Sie hier: \url{http://www.kanton-bank-login-sicherheit.com/verify}
-\end{emailbox}
-\caption{Verdächtiges E-Mail-Fallbeispiel für die Szenario-Analyse.}
-\label{fig:phishing_email}
-\end{figure}
-
-\begin{taskbox}[{Aufgabe 11: Fallbeispiel – Szenario-Analyse}]
-Lesen Sie die in \cref{fig:phishing_email} dargestellte Nachricht aufmerksam durch.
+\subsubsection{Teil 2: Mehrkanal-Analyse \& Live-Phishing}
+\begin{taskbox}[{Aufgabe 9: Echtheit prüfen}]
+Prüfen Sie die fünf dargestellten Nachrichten aus verschiedenen Kanälen (E-Mail, SMS, Push-Mitteilung und Chat in \cref{fig:5_nachrichten}). \textbf{Achtung: Mindestens eine Nachricht ist echt!}
 \begin{enumerate}[label=\alph*)]
-    \item Identifizieren Sie mindestens drei Merkmale in dieser Nachricht, die eindeutig auf einen \gls{phishing}-Angriff hinweisen.
-    \item Welche Form von \gls{phishing} und welcher psychologische Mechanismus liegen hier vor?
+    \item Markieren Sie bei jeder Nachricht alle verdächtigen bzw. vertrauenswürdigen Merkmale (Absender, Domain/Link, Tonfall, Kontext).
+    \item Ordnen Sie begründet zu, welche Nachrichten \textbf{Phishing} sind und welche Nachricht \textbf{legitim} ist.
+\end{enumerate}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Fünf digitale Nachrichten im Überblick.png}
+    \caption[5 Nachrichten]{5 digitale Nachrichten im Überblick (erstellt mit DALL-E, 22.11.2026).}
+    \label{fig:5_nachrichten}
+\end{figure}
+\end{taskbox}
+
+\begin{taskbox}[{Aufgabe 10: MFA und Live-Phishing durchschauen}]
+\begin{enumerate}[label=\alph*)]
+    \item Ein Mitschüler behauptet: \textit{Solange ich SMS-Codes oder eine Authenticator-App aktiviert habe, kann mir auf einer gefälschten Login-Seite nichts passieren.} Erklären Sie Schritt für Schritt, wie ein Angreifer diese Schutzmassnahme mithilfe von \textbf{Live-Phishing} trotzdem überwindet.
+    \item Warum funktionieren \textbf{TOTP-Codes} und \textbf{Push-Mitteilungen} auf einer gefälschten Zwischenseite, während ein \textbf{Passkey} oder \textbf{FIDO2-Schlüssel} den Login blockiert?
 \end{enumerate}
 \end{taskbox}
 
-\subsubsection{Teil 3: Anwendung \& Best Practices (Richtlinien beurteilen)}
+\newpage
+\subsubsection{Teil 3: Notfallplan \& Praxis-Transfer}
+\begin{taskbox}[{Aufgabe 11: Notfallplan}]
+Ein Freund schreibt Ihnen panisch: \textit{Ich habe gerade auf einen Link in einer angeblichen Paket-SMS geklickt und meine private E-Mail-Adresse sowie mein Passwort eingegeben, keine Bank-Angaben. Erst danach habe ich gemerkt, dass die Seite gefälscht war! Ich nutze dieses Passwort leider auch für andere private Dienste. Was soll ich jetzt tun?}
 
-\begin{taskbox}[{Aufgabe 12: Richtlinien beurteilen}]
-Beurteilen Sie die folgenden Aussagen. Ist die Aussage \textbf{Richtig} oder \textbf{Falsch}? \newline Begründen Sie Ihre Antwort jeweils kurz in einem bis drei Sätzen.
+Lesen Sie auf Moodle (\textit{Auf einen Phishing-Link geklickt oder Daten eingegeben?}) den Text und erstellen Sie einen strukturierten Notfallplan, mit dem Ihr Freund den Schaden sofort begrenzt. Begründen Sie jeden Schritt kurz.
+\end{taskbox}
 
-\textbf{Aussage A:} „Seriöse Banken und Institutionen fordern Kunden gelegentlich per E-Mail auf, ihr \gls{passwort} einzugeben, um die Identität bei Sicherheitsupdates zu bestätigen.“
-
-\textbf{Aussage B:} „Beim Aufruf von Links sollte stets die exakte URL (Internetadresse) geprüft werden, da Angreifer häufig Buchstabendreher oder gefälschte Subdomains (\gls{typosquatting}) nutzen.“
-
-\textbf{Aussage C:} „Ein \gls{phishing}-Angriff kann nur dann erfolgreich sein, wenn auf einem Computer keine Antiviren-Software installiert ist.“
-
-\textbf{Aussage D:} „Das Scannen von QR-Codes auf Plakaten oder Parkuhren ist völlig risikofrei, da QR-Codes keine Viren oder Links enthalten können.“
+\begin{taskbox}[{Aufgabe 12: Praxis-Check der eigenen Konten}]
+Überprüfen Sie (ohne sensible Daten preiszugeben!) die Sicherheit Ihrer mindestens zwei wichtigsten persönlichen Online-Konten (z.\,B. privates E-Mail-Konto, Apple-ID, Google-Konto, Instagram, Snapchat).
+\begin{enumerate}[label=\alph*)]
+    \item Prüfen Sie in den Sicherheitseinstellungen der jeweiligen Dienste, ob \textbf{\gls{mfa}} aktiviert ist und welches Verfahren aktuell genutzt wird (SMS-Code, Authenticator-App, Push-Mitteilung oder Passkey).
+    \item Bewerten Sie für jedes dieser Konten, ob die aktuelle Absicherung auch gegen \textbf{Live-Phishing} schützt, und notieren Sie eine konkrete Verbesserung, die Sie heute noch umsetzen können.
+\end{enumerate}
 \end{taskbox}
 
 \newpage

@@ -121,21 +121,26 @@
       \end{block}
     \end{column}
 
-    \pause
+  \pause
     \begin{column}{0.31\textwidth}
       \begin{block}{Quishing (QR-Code)}
         \small
         \begin{itemize}
-          \item Platzieren manipulierter \textbf{QR-Codes} (z.\,B. auf Plakaten oder Parkuhren).
-          \item Leitet unbemerkt auf gefälschte Webseiten weiter.
+          \item Manipulierte \textbf{QR-Codes} (z.\,B. auf Plakaten oder Parkuhren).
+          \item \textbf{URL prüfen:} Auf iOS das Vorschau-Banner \textit{lange gedrückt halten} (oder Code-Scanner nutzen); auf Android die Vorschauleiste prüfen.
         \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
   \pause
-  \vspace{1em}
+  \vspace{0.8em}
   \centering
-  \textit{Merke: Phishing findet längst nicht mehr nur im klassischen E-Mail-Postfach statt!}
+  \textit{Merke:}
+  \pause
+  \begin{itemize}
+    \item Ein QR-Code öffnet nie automatisch eine Seite, nutzen Sie die Vorschau vor dem Tippen!
+    \item Phishing findet längst nicht mehr nur im klassischen E-Mail-Postfach statt!
+  \end{itemize}
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -179,12 +184,7 @@
 \begin{frame}{Arbeitsphase 1}
   \pause
   \begin{block}{Zu zweit im Skript}
-    Bearbeiten Sie zu zweit im Skript:
-    \begin{itemize}
-      \item \textbf{Aufgabe 7:} Klassisches Phishing vs. Spear-Phishing
-      \item \textbf{Aufgabe 8:} Gefahrenkanäle (Vishing, Smishing \& Quishing) zuordnen
-      \item \textbf{Aufgabe 10:} Drei psychologische Tricks und deren Wirkung beschreiben
-    \end{itemize}
+    Bearbeiten Sie zu zweit im Skript Aufgaben 7--8.
   \end{block}
 \end{frame}
 
@@ -197,13 +197,14 @@
     Entwerfen Sie ein möglichst überzeugendes \textbf{Spear-Phishing- oder Smishing-Beispiel} für ein fiktives Szenario (z.\,B. \textit{Kanti-IT-Support, TWINT-Rückerstattung, SBB-Halbtax, Galaxus-Paket}).
   \end{exampleblock}
 
-  \vspace{0.6em}
+  \vspace{0.4em}
   \pause
-  \begin{block}{Checkliste für euren Entwurf}
+  \begin{block}{Checkliste (Alle Aspekte aus Skript Abschnitt 2.3 \& 2.4 einbeziehen)}
+    \small
     \begin{itemize}
-      \item \textbf{Psychologie:} Mindestens 2 Trigger einbauen (z.\,B. Angst + Zeitdruck).
-      \item \textbf{Technik:} Täuschenden Absender und eine manipulierte URL (\textbf{Typosquatting}) erfinden.
-      \item \textbf{Wichtig:} Nur lokal als Text/Entwurf erstellen, niemals echte Links verwenden oder versenden!
+      \item \textbf{Psychologie (2.3):} Emotionale Trigger gezielt einsetzen (Angst/Drohung, Zeitdruck, Neugier, Gier oder Hilfsbereitschaft).
+      \item \textbf{Technik \& Inhalt (2.4):} Täuschender Absender und manipulierte URL (\textbf{Typosquatting}), bewusste Wahl von Anrede/Sprache (KI-perfekt vs. Warnsignale) sowie plausible Daten- oder Anhang-Forderung.
+      \item \textbf{Sicherheit:} Nur lokal als Entwurf erstellen, niemals echte Links verwenden oder versenden!
     \end{itemize}
   \end{block}
 \end{frame}
@@ -261,32 +262,49 @@
 % -----------------------------------------------------------------------------
 % MFA & LIVE-PHISHING
 % -----------------------------------------------------------------------------
-\begin{frame}{Live-Phishing}
+\begin{frame}{Live-Phishing (Adversary-in-the-Middle)}
   \pause
-  \begin{block}{Warum MFA schützt und wann sie versagt}
-    \textbf{Standard-MFA} erschwert Kontoübernahmen massiv, da ein abgefangenes Passwort ohne den zweiten Faktor nutzlos ist. Beim \textbf{Live-Phishing} schalten Angreifer jedoch einen Proxy in Echtzeit dazwischen:
-  \end{block}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{alertblock}{Warum TOTP, SMS \& Push umgangen werden}
+        \small
+        \begin{itemize}
+          \item \textbf{TOTP \& SMS:} Hängen nur vom Geheimnis/Uhrzeit bzw. der Telefonnummer ab – \textbf{nicht von der Domain}.
+          \item \textbf{Push-Mitteilung:} Löst der Angreifer durch seinen eigenen Login-Versuch selbst aus.
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{exampleblock}{Schutz: Passkeys / FIDO2}
+        \small
+        \begin{itemize}
+          \item Kryptografisch an die \textbf{echte Domain} gebunden.
+          \item Funktionieren auf der gefälschten Zwischenseite nicht!
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
 
-  \vspace{0.6em}
+  \vspace{0.5em}
   \pause
   \centering
   \begin{tikzpicture}[
-      font=\sffamily\small,
+      font=\sffamily\footnotesize,
       >=Latex,
-      box/.style={rectangle, draw=maincolor, thick, rounded corners=4pt, fill=bglight, minimum width=3.2cm, minimum height=1.3cm, align=center},
-      evil/.style={rectangle, draw=alertred, very thick, rounded corners=4pt, fill=red!5, minimum width=3.6cm, minimum height=1.3cm, align=center}
+      box/.style={rectangle, draw=maincolor, thick, rounded corners=4pt, fill=bglight, minimum width=3.1cm, minimum height=1.25cm, align=center},
+      evil/.style={rectangle, draw=alertred, very thick, rounded corners=4pt, fill=red!5, minimum width=3.9cm, minimum height=1.25cm, align=center}
   ]
     \node[box] (victim) {\textbf{1. Opfer}\\Gibt Passwort \&\\Einmalcode ein};
-    \node[evil, right=1.6cm of victim] (proxy) {\textcolor{alertred}{\textbf{2. Phishing-Proxy}}\\Fängt Passwort \& MFA\\in Echtzeit ab};
-    \node[box, right=1.6cm of proxy] (real) {\textbf{3. Echte Website}\\Angreifer loggt sich\\sofort gültig ein};
+    \node[evil, right=1.3cm of victim] (proxy) {\textcolor{alertred}{\textbf{2. Zwischenseite (Proxy)}}\\Reicht Eingaben durch \& fängt\\Passwort, Code, etc. ab};
+    \node[box, right=1.3cm of proxy] (real) {\textbf{3. Echte Website}\\Angreifer nutzt\\Session-Cookie};
 
-    \draw[->, very thick, alertred] (victim) -- node[above, font=\scriptsize] {Live-Daten} (proxy);
-    \draw[->, very thick, alertred] (proxy) -- node[above, font=\scriptsize] {Weiterleitung} (real);
+    \draw[->, very thick, alertred] (victim) -- node[above, font=\tiny] {Eingaben} (proxy);
+    \draw[->, very thick, alertred] (proxy) -- node[above, font=\tiny] {Weiterleitung} (real);
   \end{tikzpicture}
 
   \pause
-  \vspace{0.8em}
-  \textit{Fazit: Auch bei aktiver MFA gilt. Immer zuerst die URL prüfen und Direktzugriffe nutzen!}
+  \vspace{0.5em}
+  \textit{Fazit: Auch bei aktiver MFA gilt: Immer zuerst die URL prüfen und wenn möglich Passkeys/FIDO2 nutzen!}
 \end{frame}
 
 % -----------------------------------------------------------------------------
@@ -295,12 +313,7 @@
 \begin{frame}{Arbeitsphase 2}
   \pause
   \begin{block}{Partnerarbeit im Skript}
-    Lösen Sie zu zweit im Skript:
-    \begin{itemize}
-      \item \textbf{Aufgabe 9:} Schutzwirkung von MFA bei Phishing erklären
-      \item \textbf{Aufgabe 11:} Szenario-Analyse der Bank-Mail
-      \item \textbf{Aufgabe 12:} Sicherheitsrichtlinien beurteilen
-    \end{itemize}
+    Lösen Sie zu zweit im Skript Aufgaben 9--12.
   \end{block}
 \end{frame}
 
@@ -325,7 +338,7 @@
   \end{center}
 \end{frame}
 
-\begin{frame}{Zusatz: Wurden eure Daten schon geleakt?}
+\begin{frame}{Zusatz: Wurden Ihre Daten schon geleakt?}
   \pause
   \begin{block}{Praxis-Check: \texttt{haveibeenpwned.com}}
     \begin{itemize}
@@ -347,7 +360,7 @@
         \small
         \begin{itemize}
           \item \textbf{00--15 min:} Einstieg
-          \item \textbf{15--30 min:} Einzelarbeit Aufgaben 7, 8 \& 10
+          \item \textbf{15--30 min:} Zu zweit Aufgaben 7--8
           \item \textbf{30--35 min:} Sicherung \& Abgleich im Plenum
           \item \textbf{35--45 min:} Entwicklung eines eigenen Phishing-Beispiels
         \end{itemize}
@@ -360,7 +373,7 @@
           \item \textbf{00--05 min:} Best Practices
           \item \textbf{05--15 min:} Phishing-Beispiel aus Lektion 1 vorstellen 
           \item \textbf{15--20 min:} Live-Phishing \& MFA
-          \item \textbf{20--30 min:} Partnerarbeit Aufgaben 9, 11 \& 12
+          \item \textbf{20--30 min:} Partnerarbeit Aufgaben 9--12
           \item \textbf{30--40 min:} Besprechung im Plenum 
           \item \textbf{40--45 min:} Feedback
           \item \textbf{Zusatz:} Have I been pwned?
